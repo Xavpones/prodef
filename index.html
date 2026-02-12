@@ -9,10 +9,9 @@
   
   <style>
     :root{
-      /* Paleta de Colores Profesional (Estilo Selección/FMF) */
       --primary: #002855;   /* Azul Marino Fuerte */
-      --accent: #D4AF37;    /* Dorado (Excelencia/Campeón) */
-      --highlight: #C8102E; /* Rojo (Pasión/Detalles) */
+      --accent: #D4AF37;    /* Dorado (Excelencia) */
+      --highlight: #C8102E; /* Rojo (Pasión) */
       --dark: #0f172a;
       --light: #f4f6f8;
       --white: #ffffff;
@@ -32,7 +31,7 @@
       position:fixed;
       width:100%;
       top:0;
-      background: rgba(0, 40, 85, 0.95); /* Azul con transparencia */
+      background: rgba(0, 40, 85, 0.95);
       backdrop-filter:blur(6px);
       display:flex;
       justify-content:space-between;
@@ -52,15 +51,9 @@
       gap: 10px;
     }
     
-    /* Simulación del logo visual */
-    nav .logo i {
-        color: var(--accent);
-    }
+    nav .logo i { color: var(--accent); }
 
-    nav .links {
-        display: flex;
-        gap: 20px;
-    }
+    nav .links { display: flex; gap: 20px; }
 
     nav a{
       color:white;
@@ -71,15 +64,12 @@
       text-transform: uppercase;
     }
 
-    nav a:hover{
-      color:var(--accent);
-    }
+    nav a:hover{ color:var(--accent); }
 
     /* HERO SECTION */
     header{
       height:100vh;
-      /* Fondo con overlay azulado para que el texto resalte */
-      background:linear-gradient(rgba(0, 40, 85, 0.8), rgba(0, 40, 85, 0.7)),
+      background:linear-gradient(rgba(0, 40, 85, 0.85), rgba(0, 40, 85, 0.75)),
       url('https://images.unsplash.com/photo-1517466787929-bc90951d6dbb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
       background-size:cover;
       background-position:center;
@@ -93,40 +83,51 @@
     }
 
     header h1{
-      font-size: clamp(2.5rem, 5vw, 4.5rem); /* Responsive font size */
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
       font-weight:800;
       animation:fadeDown 1s ease forwards;
       text-transform: uppercase;
       line-height: 1.1;
+      margin-bottom: 20px;
     }
     
-    header h1 span {
-        color: var(--accent);
-    }
+    header h1 span { color: var(--accent); }
 
     header p{
-      margin-top:20px;
       max-width:700px;
       font-size: 1.2rem;
       font-weight:300;
       animation:fadeUp 1.2s ease forwards;
+      margin-bottom: 30px;
     }
 
-    .badge {
+    /* BOTÓN PERFIL DEL ENTRENADOR (NUEVO) */
+    .badge-btn {
         background-color: var(--highlight);
         color: white;
-        padding: 5px 15px;
-        border-radius: 20px;
+        padding: 10px 25px;
+        border-radius: 30px;
         font-weight: bold;
         font-size: 0.9rem;
+        text-decoration: none;
         margin-bottom: 20px;
         animation: fadeDown 0.8s ease forwards;
         box-shadow: 0 0 15px rgba(200, 16, 46, 0.5);
+        border: 2px solid var(--highlight);
+        transition: 0.3s;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .badge-btn:hover {
+        background-color: transparent;
+        color: var(--highlight);
+        transform: translateY(-2px);
     }
 
     .btn{
       display:inline-block;
-      margin-top:30px;
       padding:15px 40px;
       background:var(--accent);
       color: var(--primary);
@@ -146,9 +147,7 @@
       color: var(--accent);
     }
 
-    section{
-      padding:80px 8%;
-    }
+    section{ padding:80px 8%; }
 
     section h2{
       text-align:center;
@@ -156,6 +155,7 @@
       font-size:2.5rem;
       color: var(--primary);
       font-weight: 800;
+      position: relative;
     }
     
     section h2::after {
@@ -165,6 +165,81 @@
         height: 5px;
         background: var(--highlight);
         margin: 10px auto;
+    }
+
+    /* SECCIÓN PERFIL ENTRENADOR (NUEVO DISEÑO) */
+    .profile-container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 40px;
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        border-left: 10px solid var(--accent);
+    }
+
+    .profile-img {
+        flex: 1;
+        min-width: 250px;
+        height: 350px;
+        background-color: #ddd; /* Placeholder gris */
+        background-image: url('https://via.placeholder.com/400x500?text=FOTO+ENTRENADOR'); /* Imagen temporal */
+        background-size: cover;
+        background-position: center;
+        border-radius: 15px;
+        box-shadow: 10px 10px 0px var(--primary);
+    }
+
+    .profile-info {
+        flex: 2;
+        min-width: 300px;
+    }
+
+    .profile-info h3 {
+        font-size: 2rem;
+        color: var(--primary);
+        margin-bottom: 5px;
+    }
+
+    .profile-role {
+        color: var(--highlight);
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 20px;
+        display: block;
+    }
+
+    .credentials {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin-bottom: 25px;
+    }
+
+    .cred-badge {
+        background: var(--light);
+        padding: 8px 15px;
+        border-radius: 8px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border: 1px solid #ccc;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .bio-text p { margin-bottom: 15px; color: #555; text-align: justify;}
+
+    .quote {
+        border-left: 4px solid var(--accent);
+        padding-left: 15px;
+        font-style: italic;
+        color: var(--primary);
+        font-weight: 600;
+        margin-top: 20px;
     }
 
     /* GRID SYSTEM */
@@ -183,89 +258,19 @@
       border-bottom: 5px solid var(--primary);
       text-align: center;
     }
+    .card:hover{ transform:translateY(-10px); border-bottom: 5px solid var(--accent); }
+    .card i { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; }
+    .card h3 { margin-bottom: 15px; color: var(--primary); }
 
-    .card i {
-        font-size: 2.5rem;
-        color: var(--primary);
-        margin-bottom: 20px;
-    }
-
-    .card:hover{
-      transform:translateY(-10px);
-      border-bottom: 5px solid var(--accent);
-    }
+    /* INFO & MAPA */
+    .info-container { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; }
+    .info-card { background: var(--primary); color: white; padding: 3rem; border-radius: 20px; flex: 1; min-width: 300px; max-width: 500px; }
+    .info-card ul { list-style: none; margin-top: 20px; }
+    .info-card li { margin-bottom: 15px; font-size: 1.1rem; display: flex; align-items: center; gap: 10px; }
+    .info-card li i { color: var(--accent); }
+    .price { font-size: 2.5rem; color: var(--accent); font-weight: 800; display: block; margin: 20px 0; }
     
-    .card h3 {
-        margin-bottom: 15px;
-        color: var(--primary);
-    }
-
-    /* INFO SECTION */
-    .info-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 2rem;
-        justify-content: center;
-    }
-
-    .info-card {
-        background: var(--primary);
-        color: white;
-        padding: 3rem;
-        border-radius: 20px;
-        flex: 1;
-        min-width: 300px;
-        max-width: 500px;
-    }
-
-    .info-card ul {
-        list-style: none;
-        margin-top: 20px;
-    }
-
-    .info-card li {
-        margin-bottom: 15px;
-        font-size: 1.1rem;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .info-card li i {
-        color: var(--accent);
-    }
-
-    .price {
-        font-size: 2.5rem;
-        color: var(--accent);
-        font-weight: 800;
-        display: block;
-        margin: 20px 0;
-    }
-
-    /* MAPA */
-    .map-container {
-        width: 100%;
-        height: 400px;
-        border-radius: 20px;
-        overflow: hidden;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        position: relative;
-    }
-    
-    .map-btn-overlay {
-        position: absolute;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: white;
-        padding: 10px 20px;
-        border-radius: 30px;
-        font-weight: bold;
-        color: var(--primary);
-        text-decoration: none;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
+    .map-container { width: 100%; height: 400px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); position: relative; }
 
     footer{
       background:var(--dark);
@@ -275,22 +280,11 @@
       border-top: 5px solid var(--accent);
     }
 
-    /* Animations */
-    @keyframes fadeDown{
-      from{opacity:0;transform:translateY(-30px);} 
-      to{opacity:1;transform:translateY(0);} 
-    }
-
-    @keyframes fadeUp{
-      from{opacity:0;transform:translateY(30px);} 
-      to{opacity:1;transform:translateY(0);} 
-    }
-
-    /* Mobile Nav Adjustment */
     @media(max-width:768px){
       nav { flex-direction: column; gap: 10px; padding: 10px; }
       nav .links { gap: 10px; font-size: 0.8rem; }
       header h1 { font-size: 2.5rem; }
+      .profile-container { padding: 20px; }
     }
   </style>
 </head>
@@ -301,6 +295,7 @@
       <i class="fas fa-shield-alt"></i> PRODEF
   </div>
   <div class="links">
+    <a href="#perfil-entrenador">Entrenador</a>
     <a href="#metodologia">Metodología</a>
     <a href="#info">Costos</a>
     <a href="#ubicacion">Ubicación</a>
@@ -308,15 +303,50 @@
 </nav>
 
 <header>
-  <div class="badge">ENTRENADOR CERTIFICADO FMF</div>
+  <a href="#perfil-entrenador" class="badge-btn">
+    <i class="fas fa-user-tie"></i> CONOCE AL DIRECTOR DEPORTIVO
+  </a>
+  
   <h1>PRODEF<br><span>FÚTBOL FORMATIVO</span></h1>
   <p>No es solo jugar, es aprender. Desarrollamos inteligencia de juego, técnica y valores bajo metodología profesional oficial.</p>
+  
   <a href="https://wa.me/525532254771?text=Hola,%20quisiera%20información%20sobre%20la%20semana%20de%20muestra" class="btn">
     <i class="fab fa-whatsapp"></i> Agendar Semana Muestra
   </a>
 </header>
 
-<section id="metodologia">
+<section id="perfil-entrenador" style="background-color: #fff;">
+    <h2>Director Deportivo</h2>
+    <div class="profile-container">
+        <div class="profile-img"></div> 
+        
+        <div class="profile-info">
+            <h3>Xavier García de los Santos</h3>
+            <span class="profile-role">Director Técnico & Fundador PRODEF</span>
+            
+            <div class="credentials">
+                <div class="cred-badge"><i class="fas fa-certificate"></i> Licencia FMF (C y D)</div>
+                <div class="cred-badge"><i class="fas fa-university"></i> Diplomado Barça Academy</div>
+                <div class="cred-badge"><i class="fas fa-id-card"></i> Reg: 2025-DTLD-01829</div>
+            </div>
+
+            <div class="bio-text">
+                <p>
+                    <strong>"Estructura, Disciplina y Pasión".</strong><br>
+                    Con experiencia competitiva en 4ta División Profesional y Centros de Formación, Xavier combina su trayectoria en la cancha con su formación académica en <strong>Ingeniería</strong>. Esta dualidad le permite aplicar un método de enseñanza estructurado, donde el fútbol se analiza, se organiza y se enseña con claridad.
+                </p>
+                <p>
+                    Actualmente perfecciona su metodología cursando el <strong>Diplomado de Entrenador en la Academia del FC Barcelona (Online)</strong>, trayendo a PRODEF conceptos de élite mundial adaptados al desarrollo local.
+                </p>
+                <div class="quote">
+                    "Mi objetivo es darle a los niños la oportunidad de vivir el fútbol de manera profesional, ayudándoles a ser mejores atletas y, sobre todo, mejores personas."
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="metodologia" style="background-color: var(--light);">
   <h2>Nuestra Metodología</h2>
   <div class="grid">
     <div class="card">
@@ -337,10 +367,9 @@
   </div>
 </section>
 
-<section id="info" style="background-color: #eef2f5;">
+<section id="info">
   <h2>Inscripciones Abiertas</h2>
   <div class="info-container">
-    
     <div class="info-card" style="background: white; color: var(--primary); border: 2px solid var(--primary);">
         <h3 style="color: var(--primary);">🗓️ Horarios de Clase</h3>
         <ul>
@@ -361,31 +390,23 @@
             <li>✅ Material de entrenamiento de calidad</li>
         </ul>
     </div>
-
   </div>
 </section>
 
 <section id="ubicacion">
   <h2>Ubicación</h2>
   <p style="text-align: center; margin-bottom: 20px;">Zona Villas de la Hacienda, Av. Lago de Guadalupe 460.</p>
-  
   <div class="map-container">
-    <iframe 
-        src="https://www.google.com/maps?q=Canchas+Premier+Villas+2&output=embed" 
-        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
-    </iframe>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3759.548682782766!2d-99.23438892400984!3d19.560945981745427!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d21c9003c20c03%3A0xe54e177651065840!2sCanchas%20Premier%20Villas%202!5e0!3m2!1ses-419!2smx!4v1707845392000!5m2!1ses-419!2smx" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
   </div>
-  
   <div style="text-align: center; margin-top: 30px;">
-      <a href="https://wa.me/525532254771" class="btn">
-        <i class="fab fa-whatsapp"></i> Inscribirme Ahora
-      </a>
+      <a href="https://wa.me/525532254771" class="btn"><i class="fab fa-whatsapp"></i> Inscribirme Ahora</a>
   </div>
 </section>
 
 <footer>
   <p>© 2026 PRODEF - Proyecto de Desarrollo Futbolístico</p>
-  <p style="font-size: 0.8rem; color: #aaa; margin-top: 10px;">Entrenador Certificado: Licencia D y C (FMF)</p>
+  <p style="font-size: 0.8rem; color: #aaa; margin-top: 10px;">Xavier García de los Santos - Licencia FMF No. 2025-DTLD-01829</p>
 </footer>
 
 </body>
