@@ -9,9 +9,10 @@
   
   <style>
     :root{
+      /* Paleta de Colores Profesional (Estilo Selección/FMF) */
       --primary: #002855;   /* Azul Marino Fuerte */
-      --accent: #D4AF37;    /* Dorado (Excelencia) */
-      --highlight: #C8102E; /* Rojo (Pasión) */
+      --accent: #D4AF37;    /* Dorado (Excelencia/Campeón) */
+      --highlight: #C8102E; /* Rojo (Pasión/Detalles) */
       --dark: #0f172a;
       --light: #f4f6f8;
       --white: #ffffff;
@@ -31,29 +32,32 @@
       position:fixed;
       width:100%;
       top:0;
-      background: rgba(0, 40, 85, 0.95);
+      background: rgba(0, 40, 85, 0.95); /* Azul con transparencia */
       backdrop-filter:blur(6px);
       display:flex;
       justify-content:space-between;
       align-items:center;
-      padding:15px 5%;
+      padding:10px 5%; /* Un poco menos de padding para que el logo ajuste bien */
       z-index:1000;
       box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     }
 
-    nav .logo{
-      color:white;
-      font-weight:800;
-      font-size:1.5rem;
-      letter-spacing:1px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    /* ESTILO DEL LOGO (NUEVO) */
+    nav .logo img {
+        height: 60px; /* Tamaño ideal para barra de navegación */
+        width: auto;
+        display: block;
+        transition: transform 0.3s;
     }
-    
-    nav .logo i { color: var(--accent); }
 
-    nav .links { display: flex; gap: 20px; }
+    nav .logo img:hover {
+        transform: scale(1.05); /* Efecto zoom suave al pasar el mouse */
+    }
+
+    nav .links {
+        display: flex;
+        gap: 20px;
+    }
 
     nav a{
       color:white;
@@ -64,11 +68,14 @@
       text-transform: uppercase;
     }
 
-    nav a:hover{ color:var(--accent); }
+    nav a:hover{
+      color:var(--accent);
+    }
 
     /* HERO SECTION */
     header{
       height:100vh;
+      /* Fondo con overlay azulado para que el texto resalte */
       background:linear-gradient(rgba(0, 40, 85, 0.85), rgba(0, 40, 85, 0.75)),
       url('https://images.unsplash.com/photo-1517466787929-bc90951d6dbb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
       background-size:cover;
@@ -83,7 +90,7 @@
     }
 
     header h1{
-      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-size: clamp(2.5rem, 5vw, 4.5rem); /* Responsive font size */
       font-weight:800;
       animation:fadeDown 1s ease forwards;
       text-transform: uppercase;
@@ -91,7 +98,9 @@
       margin-bottom: 20px;
     }
     
-    header h1 span { color: var(--accent); }
+    header h1 span {
+        color: var(--accent);
+    }
 
     header p{
       max-width:700px;
@@ -101,7 +110,7 @@
       margin-bottom: 30px;
     }
 
-    /* BOTÓN PERFIL DEL ENTRENADOR (NUEVO) */
+    /* BOTÓN PERFIL DEL ENTRENADOR */
     .badge-btn {
         background-color: var(--highlight);
         color: white;
@@ -147,7 +156,9 @@
       color: var(--accent);
     }
 
-    section{ padding:80px 8%; }
+    section{
+      padding:80px 8%;
+    }
 
     section h2{
       text-align:center;
@@ -167,7 +178,7 @@
         margin: 10px auto;
     }
 
-    /* SECCIÓN PERFIL ENTRENADOR (NUEVO DISEÑO) */
+    /* SECCIÓN PERFIL ENTRENADOR */
     .profile-container {
         display: flex;
         flex-wrap: wrap;
@@ -185,7 +196,8 @@
         min-width: 250px;
         height: 350px;
         background-color: #ddd; /* Placeholder gris */
-        background-image: url('foto-xavier.jpg'); /* Imagen temporal */
+        /* CAMBIA ESTO POR TU FOTO SI LA TIENES: url('foto.jpg') */
+        background-image: url('https://via.placeholder.com/400x500?text=FOTO+XAVIER'); 
         background-size: cover;
         background-position: center;
         border-radius: 15px;
@@ -230,8 +242,14 @@
         align-items: center;
         gap: 5px;
     }
+    
+    .cred-badge i { color: var(--primary); }
 
-    .bio-text p { margin-bottom: 15px; color: #555; text-align: justify;}
+    .bio-text p {
+        margin-bottom: 15px;
+        color: #555;
+        text-align: justify;
+    }
 
     .quote {
         border-left: 4px solid var(--accent);
@@ -242,7 +260,7 @@
         margin-top: 20px;
     }
 
-    /* GRID SYSTEM */
+    /* GRID SYSTEM (Metodología) */
     .grid{
       display:grid;
       gap:30px;
@@ -258,19 +276,74 @@
       border-bottom: 5px solid var(--primary);
       text-align: center;
     }
-    .card:hover{ transform:translateY(-10px); border-bottom: 5px solid var(--accent); }
-    .card i { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; }
-    .card h3 { margin-bottom: 15px; color: var(--primary); }
+
+    .card i {
+        font-size: 2.5rem;
+        color: var(--primary);
+        margin-bottom: 20px;
+    }
+
+    .card:hover{
+      transform:translateY(-10px);
+      border-bottom: 5px solid var(--accent);
+    }
+    
+    .card h3 {
+        margin-bottom: 15px;
+        color: var(--primary);
+    }
 
     /* INFO & MAPA */
-    .info-container { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; }
-    .info-card { background: var(--primary); color: white; padding: 3rem; border-radius: 20px; flex: 1; min-width: 300px; max-width: 500px; }
-    .info-card ul { list-style: none; margin-top: 20px; }
-    .info-card li { margin-bottom: 15px; font-size: 1.1rem; display: flex; align-items: center; gap: 10px; }
-    .info-card li i { color: var(--accent); }
-    .price { font-size: 2.5rem; color: var(--accent); font-weight: 800; display: block; margin: 20px 0; }
-    
-    .map-container { width: 100%; height: 400px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); position: relative; }
+    .info-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        justify-content: center;
+    }
+
+    .info-card {
+        background: var(--primary);
+        color: white;
+        padding: 3rem;
+        border-radius: 20px;
+        flex: 1;
+        min-width: 300px;
+        max-width: 500px;
+    }
+
+    .info-card ul {
+        list-style: none;
+        margin-top: 20px;
+    }
+
+    .info-card li {
+        margin-bottom: 15px;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .info-card li i {
+        color: var(--accent);
+    }
+
+    .price {
+        font-size: 2.5rem;
+        color: var(--accent);
+        font-weight: 800;
+        display: block;
+        margin: 20px 0;
+    }
+
+    .map-container {
+        width: 100%;
+        height: 400px;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        position: relative;
+    }
 
     footer{
       background:var(--dark);
@@ -280,6 +353,7 @@
       border-top: 5px solid var(--accent);
     }
 
+    /* Mobile Nav Adjustment */
     @media(max-width:768px){
       nav { flex-direction: column; gap: 10px; padding: 10px; }
       nav .links { gap: 10px; font-size: 0.8rem; }
@@ -292,7 +366,7 @@
 
 <nav>
   <div class="logo">
-      <i class="fas fa-shield-alt"></i> PRODEF
+      <img src="logo.png" alt="PRODEF Logo">
   </div>
   <div class="links">
     <a href="#perfil-entrenador">Entrenador</a>
@@ -333,10 +407,10 @@
             <div class="bio-text">
                 <p>
                     <strong>"Estructura, Disciplina y Pasión".</strong><br>
-                    Con experiencia competitiva en 4ta División Profesional y Centros de Formación, Xavier combina su trayectoria en la cancha con su formación académica en <strong>Ingeniería</strong>. Esta dualidad le permite aplicar un método de enseñanza estructurado, donde el fútbol se analiza, se organiza y se enseña con claridad.
+                    Con experiencia competitiva en 4ta División Profesional y Centros de Formación, Xavier combina su trayectoria en la cancha con su formación académica en <strong>Ingeniería</strong>. Esta dualidad le permite aplicar un método de enseñanza estructurado, donde el fútbol se analiza, se organiza y se enseña con claridad, no solo con intuición.
                 </p>
                 <p>
-                    Actualmente perfecciona su metodología cursando el <strong>Diplomado de Entrenador en la Academia del FC Barcelona (Online)</strong>, trayendo a PRODEF conceptos de élite mundial adaptados al desarrollo local.
+                    Actualmente perfecciona su metodología cursando el <strong>Diplomado de Entrenador en la Academia del FC Barcelona (Online)</strong>, trayendo a PRODEF conceptos de élite mundial adaptados al desarrollo local en Villas de la Hacienda.
                 </p>
                 <div class="quote">
                     "Mi objetivo es darle a los niños la oportunidad de vivir el fútbol de manera profesional, ayudándoles a ser mejores atletas y, sobre todo, mejores personas."
@@ -370,6 +444,7 @@
 <section id="info">
   <h2>Inscripciones Abiertas</h2>
   <div class="info-container">
+    
     <div class="info-card" style="background: white; color: var(--primary); border: 2px solid var(--primary);">
         <h3 style="color: var(--primary);">🗓️ Horarios de Clase</h3>
         <ul>
@@ -390,17 +465,25 @@
             <li>✅ Material de entrenamiento de calidad</li>
         </ul>
     </div>
+
   </div>
 </section>
 
 <section id="ubicacion">
   <h2>Ubicación</h2>
   <p style="text-align: center; margin-bottom: 20px;">Zona Villas de la Hacienda, Av. Lago de Guadalupe 460.</p>
+  
   <div class="map-container">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3759.548682782766!2d-99.23438892400984!3d19.560945981745427!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d21c9003c20c03%3A0xe54e177651065840!2sCanchas%20Premier%20Villas%202!5e0!3m2!1ses-419!2smx!4v1707845392000!5m2!1ses-419!2smx" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3760.054452147326!2d-99.2246663240212!3d19.59104043729904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d21d0059530511%3A0xc6669925e0c8b74a!2sCanchas%20Premier!5e0!3m2!1ses-419!2smx!4v1707760000000!5m2!1ses-419!2smx" 
+        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+    </iframe>
   </div>
+  
   <div style="text-align: center; margin-top: 30px;">
-      <a href="https://wa.me/525532254771" class="btn"><i class="fab fa-whatsapp"></i> Inscribirme Ahora</a>
+      <a href="https://wa.me/525532254771" class="btn">
+        <i class="fab fa-whatsapp"></i> Inscribirme Ahora
+      </a>
   </div>
 </section>
 
