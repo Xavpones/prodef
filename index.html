@@ -3,14 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PRODEF | Proyecto de Desarrollo Futbolístico</title>
+  <title>PRODEF | Formación Profesional de Fútbol</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
   <style>
     :root{
-      --primary:#00a859;
-      --dark:#0f172a;
-      --light:#f8fafc;
-      --gray:#e2e8f0;
+      /* Paleta de Colores Profesional (Estilo Selección/FMF) */
+      --primary: #002855;   /* Azul Marino Fuerte */
+      --accent: #D4AF37;    /* Dorado (Excelencia/Campeón) */
+      --highlight: #C8102E; /* Rojo (Pasión/Detalles) */
+      --dark: #0f172a;
+      --light: #f4f6f8;
+      --white: #ffffff;
     }
 
     *{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
@@ -27,39 +32,55 @@
       position:fixed;
       width:100%;
       top:0;
-      background:rgba(15,23,42,0.9);
+      background: rgba(0, 40, 85, 0.95); /* Azul con transparencia */
       backdrop-filter:blur(6px);
       display:flex;
       justify-content:space-between;
       align-items:center;
-      padding:15px 8%;
+      padding:15px 5%;
       z-index:1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     }
 
     nav .logo{
       color:white;
       font-weight:800;
-      font-size:1.3rem;
-      letter-spacing:2px;
+      font-size:1.5rem;
+      letter-spacing:1px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    /* Simulación del logo visual */
+    nav .logo i {
+        color: var(--accent);
+    }
+
+    nav .links {
+        display: flex;
+        gap: 20px;
     }
 
     nav a{
       color:white;
       text-decoration:none;
-      margin-left:20px;
       font-weight:500;
+      font-size: 0.9rem;
       transition:0.3s;
+      text-transform: uppercase;
     }
 
     nav a:hover{
-      color:var(--primary);
+      color:var(--accent);
     }
 
-    /* HERO */
+    /* HERO SECTION */
     header{
       height:100vh;
-      background:linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)),
-      url('https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a');
+      /* Fondo con overlay azulado para que el texto resalte */
+      background:linear-gradient(rgba(0, 40, 85, 0.8), rgba(0, 40, 85, 0.7)),
+      url('https://images.unsplash.com/photo-1517466787929-bc90951d6dbb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
       background-size:cover;
       background-position:center;
       display:flex;
@@ -72,75 +93,178 @@
     }
 
     header h1{
-      font-size:4rem;
+      font-size: clamp(2.5rem, 5vw, 4.5rem); /* Responsive font size */
       font-weight:800;
       animation:fadeDown 1s ease forwards;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+    
+    header h1 span {
+        color: var(--accent);
     }
 
     header p{
       margin-top:20px;
-      max-width:600px;
+      max-width:700px;
+      font-size: 1.2rem;
       font-weight:300;
       animation:fadeUp 1.2s ease forwards;
+    }
+
+    .badge {
+        background-color: var(--highlight);
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+        animation: fadeDown 0.8s ease forwards;
+        box-shadow: 0 0 15px rgba(200, 16, 46, 0.5);
     }
 
     .btn{
       display:inline-block;
       margin-top:30px;
-      padding:14px 40px;
-      background:var(--primary);
-      color:white;
+      padding:15px 40px;
+      background:var(--accent);
+      color: var(--primary);
       text-decoration:none;
       border-radius:50px;
-      font-weight:600;
+      font-weight:800;
+      text-transform: uppercase;
       transition:0.3s;
       animation:fadeUp 1.4s ease forwards;
+      border: 2px solid var(--accent);
     }
 
     .btn:hover{
       transform:translateY(-3px);
-      box-shadow:0 10px 25px rgba(0,0,0,0.2);
+      box-shadow:0 10px 25px rgba(212, 175, 55, 0.4);
+      background: transparent;
+      color: var(--accent);
     }
 
     section{
-      padding:100px 8%;
+      padding:80px 8%;
     }
 
     section h2{
       text-align:center;
-      margin-bottom:60px;
-      font-size:2.2rem;
-      position:relative;
+      margin-bottom:50px;
+      font-size:2.5rem;
+      color: var(--primary);
+      font-weight: 800;
+    }
+    
+    section h2::after {
+        content: '';
+        display: block;
+        width: 80px;
+        height: 5px;
+        background: var(--highlight);
+        margin: 10px auto;
     }
 
+    /* GRID SYSTEM */
     .grid{
       display:grid;
       gap:30px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     }
 
     .card{
       background:white;
-      padding:35px;
-      border-radius:20px;
-      box-shadow:0 10px 30px rgba(0,0,0,0.05);
+      padding:40px 30px;
+      border-radius:15px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.08);
       transition:0.4s;
+      border-bottom: 5px solid var(--primary);
+      text-align: center;
+    }
+
+    .card i {
+        font-size: 2.5rem;
+        color: var(--primary);
+        margin-bottom: 20px;
     }
 
     .card:hover{
-      transform:translateY(-8px);
+      transform:translateY(-10px);
+      border-bottom: 5px solid var(--accent);
+    }
+    
+    .card h3 {
+        margin-bottom: 15px;
+        color: var(--primary);
     }
 
-    .info{
-      text-align:center;
-      font-size:1.1rem;
+    /* INFO SECTION */
+    .info-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        justify-content: center;
     }
 
-    iframe{
-      width:100%;
-      height:400px;
-      border-radius:20px;
-      border:none;
-      margin-top:30px;
+    .info-card {
+        background: var(--primary);
+        color: white;
+        padding: 3rem;
+        border-radius: 20px;
+        flex: 1;
+        min-width: 300px;
+        max-width: 500px;
+    }
+
+    .info-card ul {
+        list-style: none;
+        margin-top: 20px;
+    }
+
+    .info-card li {
+        margin-bottom: 15px;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .info-card li i {
+        color: var(--accent);
+    }
+
+    .price {
+        font-size: 2.5rem;
+        color: var(--accent);
+        font-weight: 800;
+        display: block;
+        margin: 20px 0;
+    }
+
+    /* MAPA */
+    .map-container {
+        width: 100%;
+        height: 400px;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        position: relative;
+    }
+    
+    .map-btn-overlay {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: white;
+        padding: 10px 20px;
+        border-radius: 30px;
+        font-weight: bold;
+        color: var(--primary);
+        text-decoration: none;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
 
     footer{
@@ -148,6 +272,7 @@
       color:white;
       text-align:center;
       padding:40px 20px;
+      border-top: 5px solid var(--accent);
     }
 
     /* Animations */
@@ -161,78 +286,106 @@
       to{opacity:1;transform:translateY(0);} 
     }
 
-    @media(min-width:768px){
-      .grid{
-        grid-template-columns:repeat(2,1fr);
-      }
+    /* Mobile Nav Adjustment */
+    @media(max-width:768px){
+      nav { flex-direction: column; gap: 10px; padding: 10px; }
+      nav .links { gap: 10px; font-size: 0.8rem; }
+      header h1 { font-size: 2.5rem; }
     }
   </style>
 </head>
 <body>
 
 <nav>
-  <div class="logo">PRODEF</div>
-  <div>
+  <div class="logo">
+      <i class="fas fa-shield-alt"></i> PRODEF
+  </div>
+  <div class="links">
     <a href="#metodologia">Metodología</a>
-    <a href="#info">Información</a>
+    <a href="#info">Costos</a>
     <a href="#ubicacion">Ubicación</a>
-    <a href="#contacto">Contacto</a>
   </div>
 </nav>
 
 <header>
-  <h1>PRODEF</h1>
-  <p>Proyecto de Desarrollo Futbolístico. Formamos jugadores capaces de entender el juego y personas con valores dentro y fuera de la cancha.</p>
-  <a href="https://wa.me/525532254771" class="btn">Inscripciones Abiertas</a>
+  <div class="badge">ENTRENADOR CERTIFICADO FMF</div>
+  <h1>PRODEF<br><span>FÚTBOL FORMATIVO</span></h1>
+  <p>No es solo jugar, es aprender. Desarrollamos inteligencia de juego, técnica y valores bajo metodología profesional oficial.</p>
+  <a href="https://wa.me/525532254771?text=Hola,%20quisiera%20información%20sobre%20la%20semana%20de%20muestra" class="btn">
+    <i class="fab fa-whatsapp"></i> Agendar Semana Muestra
+  </a>
 </header>
 
 <section id="metodologia">
   <h2>Nuestra Metodología</h2>
   <div class="grid">
     <div class="card">
-      <h3>Técnica Individual</h3>
-      <p>Perfeccionamiento de control, pase, conducción y golpeo con base formativa sólida.</p>
+      <i class="fas fa-futbol"></i>
+      <h3>Técnica Real</h3>
+      <p>Fundamentos aplicados a situaciones de partido (control, pase y perfiles), no ejercicios aislados.</p>
     </div>
     <div class="card">
-      <h3>Comprensión del Juego</h3>
-      <p>Desarrollo de toma de decisiones, lectura táctica y juego colectivo.</p>
+      <i class="fas fa-brain"></i>
+      <h3>Inteligencia Táctica</h3>
+      <p>Enseñamos a leer el juego, ocupar espacios y tomar la mejor decisión bajo presión.</p>
     </div>
     <div class="card">
-      <h3>Valores</h3>
-      <p>Respeto, disciplina, actitud y responsabilidad dentro y fuera del campo.</p>
-    </div>
-    <div class="card">
-      <h3>Proceso Formativo</h3>
-      <p>Priorizamos el aprendizaje y el crecimiento antes que el resultado inmediato.</p>
+      <i class="fas fa-users"></i>
+      <h3>Valores PRODEF</h3>
+      <p>Disciplina, puntualidad y respeto. Formamos personas íntegras antes que futbolistas.</p>
     </div>
   </div>
 </section>
 
-<section id="info" class="info">
-  <h2>Información General</h2>
-  <p><strong>Edades:</strong> 6 a 15 años</p>
-  <p><strong>Días:</strong> Lunes, Miércoles y Viernes</p>
-  <p><strong>Horario:</strong> 5:15 PM - 6:45 PM</p>
-  <p><strong>Mensualidad:</strong> $800 MXN</p>
+<section id="info" style="background-color: #eef2f5;">
+  <h2>Inscripciones Abiertas</h2>
+  <div class="info-container">
+    
+    <div class="info-card" style="background: white; color: var(--primary); border: 2px solid var(--primary);">
+        <h3 style="color: var(--primary);">🗓️ Horarios de Clase</h3>
+        <ul>
+            <li><i class="fas fa-calendar-check"></i> Lunes, Miércoles y Viernes</li>
+            <li><i class="far fa-clock"></i> 5:15 PM - 6:45 PM</li>
+            <li><i class="fas fa-child"></i> Categorías: 6 a 15 años</li>
+            <li><i class="fas fa-map-marker-alt"></i> Canchas Premier Villas 2</li>
+        </ul>
+    </div>
+
+    <div class="info-card">
+        <h3>💰 Inversión Mensual</h3>
+        <p>Calidad garantizada por profesor certificado.</p>
+        <span class="price">$800 MXN</span>
+        <ul>
+            <li>✅ Entrenamientos planificados</li>
+            <li>✅ Seguimiento personalizado</li>
+            <li>✅ Material de entrenamiento de calidad</li>
+        </ul>
+    </div>
+
+  </div>
 </section>
 
 <section id="ubicacion">
   <h2>Ubicación</h2>
-  <div class="info">
-    <p>Canchas Premier Villas 2<br>Zona Villas de la Hacienda</p>
-    <a href="https://maps.app.goo.gl/zcVg6Juy2F7QJqUc9" target="_blank" class="btn">Ver Ubicación en Google Maps</a>
+  <p style="text-align: center; margin-bottom: 20px;">Zona Villas de la Hacienda, Av. Lago de Guadalupe 460.</p>
+  
+  <div class="map-container">
+    <iframe 
+        src="https://www.google.com/maps?q=Canchas+Premier+Villas+2&output=embed" 
+        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+    </iframe>
   </div>
-</section>
-
-<section id="contacto" class="info">
-  <h2>Contacto</h2>
-  <p>WhatsApp: 5532254771</p>
-  <p>WhatsApp: 5653764517</p>
-  <a href="https://wa.me/525532254771" class="btn">Enviar Mensaje</a>
+  
+  <div style="text-align: center; margin-top: 30px;">
+      <a href="https://wa.me/525532254771" class="btn">
+        <i class="fab fa-whatsapp"></i> Inscribirme Ahora
+      </a>
+  </div>
 </section>
 
 <footer>
   <p>© 2026 PRODEF - Proyecto de Desarrollo Futbolístico</p>
+  <p style="font-size: 0.8rem; color: #aaa; margin-top: 10px;">Entrenador Certificado: Licencia D y C (FMF)</p>
 </footer>
 
 </body>
