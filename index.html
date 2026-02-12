@@ -70,7 +70,7 @@
 
     /* --- HERO SECTION (PORTADA) --- */
     header{
-      min-height:100vh; /* Asegura que cubra toda la pantalla */
+      min-height:100vh;
       background:linear-gradient(rgba(0, 40, 85, 0.85), rgba(0, 40, 85, 0.70)),
       url('https://images.unsplash.com/photo-1517466787929-bc90951d6dbb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
       background-size:cover;
@@ -81,7 +81,7 @@
       align-items:center;
       text-align:center;
       color:white;
-      padding:80px 20px 20px 20px; /* Padding extra arriba por la barra fija */
+      padding:80px 20px 20px 20px;
     }
 
     header h1{
@@ -177,10 +177,10 @@
         margin: 10px auto;
     }
 
-    /* --- PERFIL ENTRENADOR (Optimizado Móvil) --- */
+    /* --- PERFIL ENTRENADOR --- */
     .profile-container {
         display: flex;
-        flex-direction: row; /* Por defecto en fila (PC) */
+        flex-direction: row;
         align-items: center;
         gap: 40px;
         background: white;
@@ -242,15 +242,24 @@
     .info-card li { margin-bottom: 15px; font-size: 1rem; display: flex; align-items: center; gap: 10px; }
     .price { font-size: 2.5rem; color: var(--accent); font-weight: 800; display: block; margin: 15px 0; }
 
-    /* --- MAPA Y UBICACIÓN --- */
-    .map-wrapper {
-        position: relative;
-        text-align: center;
+    /* --- FORMULARIO GOOGLE --- */
+    .form-wrapper {
+        display: flex;
+        justify-content: center;
+        background: white;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        max-width: 800px;
+        margin: 0 auto;
+        overflow: hidden;
     }
 
+    /* --- MAPA Y UBICACIÓN --- */
+    .map-wrapper { position: relative; text-align: center; }
     .map-container {
         width: 100%;
-        height: 350px; /* Altura ideal para celular */
+        height: 350px;
         border-radius: 20px;
         overflow: hidden;
         box-shadow: 0 10px 30px rgba(0,0,0,0.15);
@@ -268,37 +277,12 @@
 
     /* --- MEDIA QUERIES (OPTIMIZACIÓN CELULAR) --- */
     @media(max-width:768px){
-      nav { 
-        padding: 10px 5%; 
-        flex-direction: column; 
-        gap: 10px;
-      }
-      
-      nav .links { 
-        gap: 15px; 
-        width: 100%; 
-        justify-content: center; 
-        flex-wrap: wrap;
-      }
-
+      nav { padding: 10px 5%; flex-direction: column; gap: 10px; }
+      nav .links { gap: 15px; width: 100%; justify-content: center; flex-wrap: wrap; }
       nav a { font-size: 0.75rem; }
-
-      header { padding-top: 140px; /* Más espacio arriba para que no tape el menú */ }
-
-      /* Apilar perfil entrenador en vertical */
-      .profile-container {
-        flex-direction: column;
-        padding: 25px;
-        border-left: none;
-        border-top: 8px solid var(--accent);
-      }
-
-      .profile-img {
-        width: 100%;
-        min-height: 300px;
-        max-height: 400px;
-      }
-
+      header { padding-top: 140px; }
+      .profile-container { flex-direction: column; padding: 25px; border-left: none; border-top: 8px solid var(--accent); }
+      .profile-img { width: 100%; min-height: 300px; max-height: 400px; }
       .info-card { padding: 2rem; }
     }
 
@@ -318,6 +302,7 @@
     <a href="#metodologia">Metodología</a>
     <a href="#info">Costos</a>
     <a href="#ubicacion">Ubicación</a>
+    <a href="#registro" style="color: var(--accent); border-bottom: 2px solid var(--accent);">Registro</a>
   </div>
 </nav>
 
@@ -329,8 +314,8 @@
   <h1>PRODEF<br><span>FÚTBOL FORMATIVO</span></h1>
   <p>No es solo jugar, es aprender. Desarrollamos inteligencia de juego, técnica y valores bajo metodología profesional oficial.</p>
   
-  <a href="https://wa.me/525532254771?text=Hola,%20quisiera%20información%20sobre%20la%20semana%20de%20muestra" class="btn">
-    <i class="fab fa-whatsapp"></i> Agendar Semana Muestra
+  <a href="#registro" class="btn">
+    <i class="fas fa-clipboard-list"></i> Pre-Inscribirse Ahora
   </a>
 </header>
 
@@ -409,6 +394,25 @@
   </div>
 </section>
 
+<section id="registro" style="background-color: #eef2f5;">
+    <h2>Ficha de Jugador</h2>
+    <p style="text-align: center; margin-bottom: 30px;">
+        Llena este formulario para agilizar tu registro.
+    </p>
+    
+    <div class="form-wrapper">
+        <iframe 
+            src="https://docs.google.com/forms/d/e/1FAIpQLSc1Pzbh1RakZLCwca9i3RvXngZmHQXRNfg_jB9ggxAJmwmlbg/viewform?embedded=true" 
+            width="100%" 
+            height="1450" 
+            frameborder="0" 
+            marginheight="0" 
+            marginwidth="0">
+            Cargando…
+        </iframe>
+    </div>
+</section>
+
 <section id="ubicacion">
   <h2>Ubicación</h2>
   <p style="text-align: center; margin-bottom: 20px;">Av Lago de Guadalupe 460, Ejido San Miguel Chalma.</p>
@@ -432,7 +436,7 @@
   
   <div style="text-align: center; margin-top: 40px;">
       <a href="https://wa.me/525532254771" class="btn">
-        <i class="fab fa-whatsapp"></i> Inscribirme Ahora
+        <i class="fab fa-whatsapp"></i> Mandar WhatsApp
       </a>
   </div>
 </section>
