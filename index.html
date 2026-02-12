@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRODEF | Proyecto de Desarrollo Futbolístico</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Montserrat', sans-serif; line-height: 1.6; color: #1a1a1a; }
+
+    header {
+      background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+      url('https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      max-width: 600px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 14px 35px;
+      background: #00a859;
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #008f4c;
+    }
+
+    section {
+      padding: 80px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    section h2 {
+      text-align: center;
+      margin-bottom: 50px;
+      font-size: 2.2rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 30px;
+    }
+
+    .card {
+      background: #f5f5f5;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      margin-bottom: 15px;
+    }
+
+    .info {
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
+    footer {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 40px;
+    }
+
+    @media (min-width: 768px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      header h1 {
+        font-size: 4.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>PRODEF</h1>
+  <p>Proyecto de Desarrollo Futbolístico. Formamos jugadores, formamos personas.</p>
+  <a href="https://wa.me/525532254771" class="btn">Inscripciones Abiertas</a>
+</header>
+
+<section>
+  <h2>Nuestra Metodología</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Técnica Individual</h3>
+      <p>Desarrollo sólido del control, pase, conducción y golpeo desde edades tempranas.</p>
+    </div>
+    <div class="card">
+      <h3>Comprensión del Juego</h3>
+      <p>Enseñamos a entender el fútbol, tomar decisiones y jugar colectivamente.</p>
+    </div>
+    <div class="card">
+      <h3>Valores</h3>
+      <p>Respeto, disciplina, trabajo en equipo y actitud dentro y fuera de la cancha.</p>
+    </div>
+    <div class="card">
+      <h3>Proceso Formativo</h3>
+      <p>No buscamos solo ganar partidos, buscamos que jueguen bien y disfruten aprender.</p>
+    </div>
+  </div>
+</section>
+
+<section class="info">
+  <h2>Información General</h2>
+  <p><strong>Edades:</strong> 6 a 15 años</p>
+  <p><strong>Días:</strong> Lunes, Miércoles y Viernes</p>
+  <p><strong>Horario:</strong> 5:15 PM - 6:45 PM</p>
+  <p><strong>Ubicación:</strong> Canchas Premier Villas 2, Zona Villas de la Hacienda</p>
+  <p><strong>Mensualidad:</strong> $800 MXN</p>
+</section>
+
+<section class="info">
+  <h2>Contacto</h2>
+  <p>WhatsApp: 5532254771</p>
+  <p>WhatsApp: 5653764517</p>
+  <a href="https://wa.me/525532254771" class="btn">Enviar Mensaje</a>
+</section>
+
+<footer>
+  <p>© 2026 PRODEF - Proyecto de Desarrollo Futbolístico</p>
+</footer>
+
+</body>
+</html>
