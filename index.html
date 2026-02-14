@@ -6,470 +6,441 @@
   <title>PRODEF | Formación Profesional de Fútbol</title>
   
   <link rel="icon" href="logo.png" type="image/png">
-
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   
   <style>
     :root{
-      /* Paleta de Colores FMF */
-      --primary: #002855;   /* Azul Marino Fuerte */
-      --accent: #D4AF37;    /* Dorado (Excelencia) */
-      --highlight: #C8102E; /* Rojo (Pasión) */
+      --primary: #002855;
+      --accent: #D4AF37;
+      --highlight: #C8102E;
       --dark: #0f172a;
       --light: #f4f6f8;
       --white: #ffffff;
     }
 
-    *{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
+    *{margin:0;padding:0;box-sizing:border-box;}
 
     body{
       font-family:'Montserrat',sans-serif;
       background:var(--light);
       color:var(--dark);
       line-height:1.6;
+      padding-top: 70px; /* Espacio para el menú fijo */
     }
 
-    /* --- BARRA DE NAVEGACIÓN --- */
+    /* --- BOTÓN FLOTANTE WHATSAPP --- */
+    .float-wa {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        bottom: 25px;
+        right: 25px;
+        background-color: #25d366;
+        color: #FFF;
+        border-radius: 50px;
+        text-align: center;
+        font-size: 30px;
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition: 0.3s;
+        animation: pulse 2s infinite;
+    }
+
+    .float-wa:hover {
+        background-color: #128C7E;
+        transform: scale(1.1);
+    }
+
+    @keyframes pulse {
+        0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+        70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    }
+
+    /* --- NAVEGACIÓN --- */
     nav{
       position:fixed;
       width:100%;
       top:0;
-      background: rgba(0, 40, 85, 0.98);
-      backdrop-filter:blur(10px);
+      left: 0;
+      background: var(--primary);
       display:flex;
       justify-content:space-between;
       align-items:center;
       padding:10px 5%;
       z-index:1000;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
 
-    nav .logo img {
-        height: 50px; /* Tamaño optimizado para móvil */
-        width: auto;
-        display: block;
-        transition: transform 0.3s;
+    nav .logo img { height: 50px; width: auto; cursor: pointer; }
+    nav .links { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+
+    nav button {
+      background: transparent; border: none; color: var(--white);
+      font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.8rem;
+      text-transform: uppercase; cursor: pointer; padding: 8px 12px;
+      transition: 0.3s; border-radius: 5px;
     }
 
-    nav .links {
-        display: flex;
-        gap: 20px;
-    }
+    nav button:hover, nav button.active { color: var(--accent); background: rgba(255,255,255,0.1); }
+    nav button.btn-registro { border: 1px solid var(--accent); color: var(--accent); }
+    nav button.btn-registro:hover { background: var(--accent); color: var(--primary); }
 
-    nav a{
-      color:white;
-      text-decoration:none;
-      font-weight:600;
-      font-size: 0.85rem;
-      transition:0.3s;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
+    /* --- VISTAS --- */
+    .page-section { display: none; animation: fadeIn 0.4s ease; min-height: 85vh; padding: 40px 5%; }
+    #inicio { display: block; padding: 0; margin-top: -70px; }
 
-    nav a:hover{ color:var(--accent); }
-
-    /* --- HERO SECTION (PORTADA) --- */
+    /* --- PORTADA --- */
     header{
       min-height:100vh;
       background:linear-gradient(rgba(0, 40, 85, 0.85), rgba(0, 40, 85, 0.70)),
       url('https://images.unsplash.com/photo-1517466787929-bc90951d6dbb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-      background-size:cover;
-      background-position:center;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      text-align:center;
-      color:white;
-      padding:80px 20px 20px 20px;
+      background-size:cover; background-position:center;
+      display:flex; flex-direction:column; justify-content:center; align-items:center;
+      text-align:center; color:white; padding:80px 20px;
     }
 
-    header h1{
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      font-weight:900;
-      animation:fadeDown 1s ease forwards;
-      text-transform: uppercase;
-      line-height: 1.1;
-      margin-bottom: 15px;
-    }
-    
+    header h1{ font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight:900; text-transform: uppercase; line-height: 1.1; margin-bottom: 15px; }
     header h1 span { color: var(--accent); }
 
-    header p{
-      max-width:700px;
-      font-size: clamp(1rem, 4vw, 1.2rem);
-      font-weight:300;
-      animation:fadeUp 1.2s ease forwards;
-      margin-bottom: 30px;
-    }
+    /* --- TITULOS --- */
+    h2.page-title { text-align: center; margin-bottom: 40px; font-size: 2.2rem; color: var(--primary); font-weight: 800; text-transform: uppercase; position: relative; }
+    h2.page-title::after { content: ''; display: block; width: 80px; height: 4px; background: var(--highlight); margin: 10px auto; }
+    h3 { color: var(--primary); margin-bottom: 10px; }
 
-    /* Botones */
-    .badge-btn {
-        background-color: var(--highlight);
-        color: white;
-        padding: 8px 20px;
-        border-radius: 30px;
-        font-weight: bold;
-        font-size: 0.8rem;
-        text-decoration: none;
-        margin-bottom: 20px;
-        animation: fadeDown 0.8s ease forwards;
-        box-shadow: 0 0 15px rgba(200, 16, 46, 0.4);
-        border: 2px solid var(--highlight);
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .btn{
-      display:inline-block;
-      padding:15px 35px;
-      background:var(--accent);
-      color: var(--primary);
-      text-decoration:none;
-      border-radius:50px;
-      font-weight:800;
-      text-transform: uppercase;
-      font-size: 0.9rem;
-      transition:0.3s;
-      animation:fadeUp 1.4s ease forwards;
-      border: 2px solid var(--accent);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    }
-
-    .btn:hover{
-      transform:translateY(-3px);
-      box-shadow:0 10px 25px rgba(212, 175, 55, 0.4);
-      background: transparent;
-      color: var(--accent);
-    }
+    /* --- TIMELINE (RUTINA DE ENTRENAMIENTO) --- */
+    .timeline { position: relative; max-width: 800px; margin: 0 auto 50px auto; border-left: 4px solid var(--accent); padding-left: 30px; }
+    .timeline-item { position: relative; margin-bottom: 30px; }
+    .timeline-item::before { content: ''; position: absolute; left: -39px; top: 5px; width: 14px; height: 14px; background: var(--highlight); border-radius: 50%; border: 3px solid white; }
+    .time-badge { background: var(--primary); color: white; padding: 3px 10px; border-radius: 15px; font-size: 0.8rem; font-weight: bold; display: inline-block; margin-bottom: 5px; }
     
-    .btn-map {
-        background-color: var(--primary);
-        color: white;
-        border-color: var(--primary);
-        margin-top: 20px;
-    }
-    
-    .btn-map:hover {
-        color: var(--primary);
-        background: white;
-    }
+    /* --- MATERIAL LIST --- */
+    .material-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 30px; }
+    .material-item { background: white; padding: 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; align-items: center; gap: 10px; font-size: 0.9rem; border-left: 3px solid var(--primary); }
+    .material-item i { color: var(--accent); }
 
-    /* --- SECCIONES GENERALES --- */
-    section{ padding:60px 5%; }
+    /* --- ACCORDION (FAQ) --- */
+    .accordion { max-width: 800px; margin: 0 auto; }
+    .accordion-item { background: white; border-radius: 10px; margin-bottom: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); overflow: hidden; }
+    .accordion-header { background: white; padding: 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: bold; color: var(--primary); transition: 0.3s; }
+    .accordion-header:hover { background: #f9f9f9; }
+    .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; padding: 0 20px; color: #555; text-align: justify; }
+    .accordion-content p { padding-bottom: 20px; }
+    .accordion-header.active { background: var(--light); color: var(--highlight); }
 
-    section h2{
-      text-align:center;
-      margin-bottom:40px;
-      font-size: clamp(1.8rem, 5vw, 2.5rem);
-      color: var(--primary);
-      font-weight: 800;
-      position: relative;
-    }
-    
-    section h2::after {
-        content: '';
-        display: block;
-        width: 60px;
-        height: 5px;
-        background: var(--highlight);
-        margin: 10px auto;
-    }
+    /* --- COMPONENTES --- */
+    .badge-btn { background-color: var(--highlight); color: white; padding: 8px 20px; border-radius: 30px; font-weight: bold; font-size: 0.8rem; margin-bottom: 20px; border: 2px solid var(--highlight); display: inline-flex; align-items: center; gap: 8px; cursor: pointer; transition: 0.3s; }
+    .badge-btn:hover { background: transparent; transform: translateY(-2px); color: var(--highlight); }
 
-    /* --- PERFIL ENTRENADOR --- */
-    .profile-container {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 40px;
-        background: white;
-        padding: 40px;
-        border-radius: 20px;
-        box-shadow: 0 15px 40px rgba(0,0,0,0.05);
-        border-left: 8px solid var(--accent);
-    }
+    .btn { display:inline-block; padding:15px 35px; background:var(--accent); color: var(--primary); border-radius:50px; font-weight:800; text-transform: uppercase; font-size: 0.9rem; transition:0.3s; border: 2px solid var(--accent); cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    .btn:hover { background: transparent; color: var(--accent); }
 
-    .profile-img {
-        flex: 1;
-        min-width: 250px;
-        height: 350px;
-        background-color: #ddd;
-        /* IMPORTANTE: CAMBIA ESTO POR LA RUTA DE TU FOTO */
-        background-image: url('foto-xavier.jpg'); 
-        background-size: cover;
-        background-position: center;
-        border-radius: 15px;
-        box-shadow: 10px 10px 0px var(--primary);
-    }
-
+    .profile-container { display: flex; flex-direction: row; align-items: center; gap: 40px; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.05); border-left: 8px solid var(--accent); }
+    .profile-img { flex: 1; min-width: 250px; height: 350px; background-color: #ddd; background-image: url('foto-xavier.jpg'); background-size: cover; background-position: center; border-radius: 15px; }
     .profile-info { flex: 2; }
-    .profile-info h3 { font-size: 1.8rem; color: var(--primary); margin-bottom: 5px; line-height: 1.2; }
-    .profile-role { color: var(--highlight); font-weight: bold; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 20px; display: block; }
+    
+    .values-list { list-style: none; margin-top: 15px; }
+    .values-list li { margin-bottom: 8px; padding-left: 20px; position: relative; font-size: 0.95rem; }
+    .values-list li::before { content: '✓'; color: var(--highlight); position: absolute; left: 0; font-weight: bold; }
 
-    .credentials { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
-    .cred-badge { background: var(--light); padding: 6px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; border: 1px solid #ccc; display: flex; align-items: center; gap: 5px; }
-    .cred-badge i { color: var(--primary); }
-
-    .bio-text p { margin-bottom: 15px; color: #555; text-align: justify; font-size: 0.95rem; }
-    .quote { border-left: 4px solid var(--accent); padding-left: 15px; font-style: italic; color: var(--primary); font-weight: 600; margin-top: 20px; font-size: 0.9rem; }
-
-    /* --- METODOLOGÍA (GRID) --- */
-    .grid{
-      display:grid;
-      gap:20px;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    }
-
-    .card{
-      background:white;
-      padding:30px 20px;
-      border-radius:15px;
-      box-shadow:0 5px 20px rgba(0,0,0,0.05);
-      transition:0.4s;
-      border-bottom: 4px solid var(--primary);
-      text-align: center;
-    }
-    .card:hover{ transform:translateY(-5px); border-bottom: 4px solid var(--accent); }
-    .card i { font-size: 2.2rem; color: var(--primary); margin-bottom: 15px; }
-    .card h3 { margin-bottom: 10px; color: var(--primary); font-size: 1.2rem; }
-    .card p { font-size: 0.9rem; color: #666; }
-
-    /* --- INFO & COSTOS --- */
     .info-container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
     .info-card { background: var(--primary); color: white; padding: 2.5rem; border-radius: 20px; flex: 1; min-width: 300px; max-width: 500px; }
-    .info-card ul { list-style: none; margin-top: 20px; padding: 0; }
-    .info-card li { margin-bottom: 15px; font-size: 1rem; display: flex; align-items: center; gap: 10px; }
+    .info-card.light { background: white; color: var(--dark); border: 2px solid var(--primary); }
     .price { font-size: 2.5rem; color: var(--accent); font-weight: 800; display: block; margin: 15px 0; }
+    
+    .map-container { width: 100%; height: 350px; border-radius: 20px; overflow: hidden; border: 2px solid white; }
 
-    /* --- FORMULARIO GOOGLE --- */
-    .form-wrapper {
-        background: white;
-        padding: 20px;
-        border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        max-width: 800px;
-        margin: 0 auto;
-        overflow: hidden;
-    }
-
-    /* --- MAPA Y UBICACIÓN --- */
-    .map-wrapper { position: relative; text-align: center; }
-    .map-container {
-        width: 100%;
-        height: 350px;
-        border-radius: 20px;
-        overflow: hidden;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        border: 2px solid white;
-    }
-
-    footer{
-      background:var(--dark);
-      color:white;
-      text-align:center;
-      padding:40px 20px;
-      border-top: 5px solid var(--accent);
-      font-size: 0.9rem;
-    }
-
-    /* --- MEDIA QUERIES (OPTIMIZACIÓN CELULAR) --- */
     @media(max-width:768px){
-      nav { padding: 10px 5%; flex-direction: column; gap: 10px; }
-      nav .links { gap: 15px; width: 100%; justify-content: center; flex-wrap: wrap; }
-      nav a { font-size: 0.75rem; }
-      header { padding-top: 140px; }
+      nav { flex-direction: column; gap: 10px; padding: 15px; }
+      nav .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+      nav button { font-size: 0.75rem; padding: 5px 10px; flex-grow: 1; text-align: center; }
       .profile-container { flex-direction: column; padding: 25px; border-left: none; border-top: 8px solid var(--accent); }
-      .profile-img { width: 100%; min-height: 300px; max-height: 400px; }
-      .info-card { padding: 2rem; }
+      .profile-img { width: 100%; min-height: 300px; }
+      body { padding-top: 130px; } 
+      #inicio { margin-top: -130px; }
     }
 
-    /* Animaciones */
-    @keyframes fadeDown{ from{opacity:0;transform:translateY(-20px);} to{opacity:1;transform:translateY(0);} }
-    @keyframes fadeUp{ from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);} }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
-
-<script>
-const elements = document.querySelectorAll('.card, .profile-container, .info-card');
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      entry.target.style.opacity = 1;
-      entry.target.style.transform = "translateY(0)";
-    }
-  });
-});
-
-elements.forEach(el => {
-  el.style.opacity = 0;
-  el.style.transform = "translateY(20px)";
-  el.style.transition = "all 0.6s ease";
-  observer.observe(el);
-});
-</script>
-
 <body>
 
+<a href="https://wa.me/525532254771" class="float-wa" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
 <nav>
-  <div class="logo">
+  <div class="logo" onclick="mostrarPagina('inicio')">
       <img src="logo.png" alt="PRODEF Logo">
   </div>
   <div class="links">
-    <a href="#perfil-entrenador">Entrenador</a>
-    <a href="#metodologia">Metodología</a>
-    <a href="#info">Costos</a>
-    <a href="#ubicacion">Ubicación</a>
-    <a href="#registro" style="color: var(--accent); border-bottom: 2px solid var(--accent);">Registro</a>
+    <button onclick="mostrarPagina('inicio')" id="btn-inicio" class="active">Inicio</button>
+    <button onclick="mostrarPagina('entrenador')" id="btn-entrenador">Entrenador</button>
+    <button onclick="mostrarPagina('metodologia')" id="btn-metodologia">Metodología</button>
+    <button onclick="mostrarPagina('costos')" id="btn-costos">Inscripción</button>
+    <button onclick="mostrarPagina('faq')" id="btn-faq">Preguntas</button> <button onclick="mostrarPagina('ubicacion')" id="btn-ubicacion">Ubicación</button>
+    <button onclick="mostrarPagina('registro')" id="btn-registro" class="btn-registro">Registro</button>
   </div>
 </nav>
 
-<header>
-  <a href="#perfil-entrenador" class="badge-btn">
-    <i class="fas fa-user-tie"></i> CONOCE AL DIRECTOR DEPORTIVO
-  </a>
-  
-  <h1>PRODEF<br><span>FÚTBOL FORMATIVO</span></h1>
-  <p>No es solo jugar, es aprender. Desarrollamos inteligencia de juego, técnica y valores bajo metodología profesional oficial.</p>
-  
-  <a href="#registro" class="btn">
-    <i class="fas fa-clipboard-list"></i> Pre-Inscribirse Ahora
-  </a>
-</header>
+<div id="inicio" class="page-section">
+    <header>
+      <div class="badge-btn" onclick="mostrarPagina('entrenador')">
+        <i class="fas fa-user-tie"></i> CONOCE AL DIRECTOR DEPORTIVO
+      </div>
+      
+      <h1>PRODEF<br><span>FÚTBOL FORMATIVO</span></h1>
+      <p style="max-width: 700px; margin: 0 auto 30px auto; font-size: 1.2rem;">
+        No buscamos jugadores que solo jueguen, buscamos jugadores que entiendan el juego.
+      </p>
+      
+      <div style="margin-top: 30px;">
+          <button onclick="mostrarPagina('registro')" class="btn">
+            <i class="fas fa-clipboard-list"></i> Pre-Inscribirse Ahora
+          </button>
+      </div>
+    </header>
+</div>
 
-<section id="perfil-entrenador" style="background-color: #fff;">
-    <h2>Director Deportivo</h2>
+<div id="entrenador" class="page-section">
+    <h2 class="page-title">Director Deportivo</h2>
     <div class="profile-container">
         <div class="profile-img"></div> 
-        
         <div class="profile-info">
             <h3>Xavier García de los Santos</h3>
-            <span class="profile-role">Director Técnico & Fundador PRODEF</span>
+            <span style="color:var(--highlight); font-weight:bold; text-transform:uppercase;">Director Técnico & Fundador PRODEF</span>
             
-            <div class="credentials">
-                <div class="cred-badge"><i class="fas fa-certificate"></i> Licencia FMF (C y D)</div>
-                <div class="cred-badge"><i class="fas fa-university"></i> Diplomado Barça Academy</div>
-                <div class="cred-badge"><i class="fas fa-id-card"></i> Reg: 2025-DTLD-01829</div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin:10px 0;">
+                <span style="background:#eee; padding:5px 10px; border-radius:5px; font-size:0.8rem; font-weight:bold;"><i class="fas fa-certificate"></i> Licencia FMF (C y D)</span>
+                <span style="background:#eee; padding:5px 10px; border-radius:5px; font-size:0.8rem; font-weight:bold;"><i class="fas fa-university"></i> Diplomado Barça Academy</span>
             </div>
 
-            <div class="bio-text">
-                <p>
-                    <strong>"Estructura, Disciplina y Pasión".</strong><br>
-                    Con experiencia competitiva en 4ta División Profesional y Centros de Formación, Xavier combina su trayectoria en la cancha con su formación académica en <strong>Ingeniería</strong>. Esta dualidad le permite aplicar un método de enseñanza estructurado, donde el fútbol se analiza, se organiza y se enseña con claridad.
-                </p>
-                <div class="quote">
-                    "Mi objetivo es darle a los niños la oportunidad de vivir el fútbol de manera profesional, ayudándoles a ser mejores atletas y, sobre todo, mejores personas."
-                </div>
+            <p style="margin: 15px 0; font-style: italic; font-size: 1.1rem; color: var(--primary); font-weight: 600;">
+                "El talento se desarrolla con disciplina, no con suerte."
+            </p>
+
+            <p style="text-align: justify; color: #555;">
+                En PRODEF se forma al jugador y a la persona. La disciplina es parte del proceso formativo, no algo separado.
+            </p>
+
+            <h4 style="color:var(--highlight); margin-top:20px; text-transform:uppercase;">Valores Innegociables:</h4>
+            <ul class="values-list">
+                <li>Se saluda al llegar y se despide al retirarse.</li>
+                <li>Se respeta al compañero, al entrenador y al rival.</li>
+                <li>El material de entrenamiento se cuida y se respeta.</li>
+                <li>El error es parte del aprendizaje, pero la actitud es obligatoria.</li>
+                <li>El compañero es sagrado. Nadie entrena solo.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div id="metodologia" class="page-section">
+    <h2 class="page-title">Rutina de Entrenamiento</h2>
+    <p style="text-align:center; max-width:700px; margin:0 auto 40px auto; color:#666;">
+        Cada sesión está diseñada para que el jugador no solo ejecute, sino que entienda el juego. Así trabajamos en PRODEF:
+    </p>
+
+    <div class="timeline">
+        <div class="timeline-item">
+            <span class="time-badge">5 Min</span>
+            <h3>Recepción y Activación</h3>
+            <p>Verificación de asistencia y charla técnica sobre el objetivo de la sesión.</p>
+        </div>
+        <div class="timeline-item">
+            <span class="time-badge">10-15 Min</span>
+            <h3>Calentamiento Neuromuscular</h3>
+            <p>Coordinación, movilidad y equilibrio utilizando escalera, aros y balón.</p>
+        </div>
+        <div class="timeline-item">
+            <span class="time-badge">20 Min</span>
+            <h3>Desarrollo Técnico</h3>
+            <p>Fundamentos (pase, control, conducción, perfiles) en situaciones progresivas.</p>
+        </div>
+        <div class="timeline-item">
+            <span class="time-badge">25-30 Min</span>
+            <h3>Situaciones Reales (3v3, 4v4)</h3>
+            <p>Juego reducido donde el jugador aprende a tomar decisiones bajo presión.</p>
+        </div>
+        <div class="timeline-item">
+            <span class="time-badge">20 Min</span>
+            <h3>Juego Aplicado y Cierre</h3>
+            <p>Partido formativo, retroalimentación y vuelta a la calma.</p>
+        </div>
+    </div>
+
+    <h2 class="page-title" style="margin-top:60px;">Material Profesional</h2>
+    <p style="text-align:center;">Todo el material es de calidad formativa, adecuado para el desarrollo.</p>
+    
+    <div class="material-list">
+        <div class="material-item"><i class="fas fa-futbol"></i> Balones Oficiales No. 4 y 5</div>
+        <div class="material-item"><i class="fas fa-traffic-light"></i> Conos y Platos</div>
+        <div class="material-item"><i class="fas fa-stream"></i> Escaleras de Coordinación</div>
+        <div class="material-item"><i class="fas fa-ring"></i> Aros y Mini Vallas</div>
+        <div class="material-item"><i class="fas fa-tshirt"></i> Casacas (Petos)</div>
+        <div class="material-item"><i class="fas fa-chalkboard-teacher"></i> Pizarra Táctica</div>
+        <div class="material-item"><i class="fas fa-bullseye"></i> Porterías Formativas</div>
+    </div>
+</div>
+
+<div id="costos" class="page-section">
+    <h2 class="page-title">Inscripciones</h2>
+    <div class="info-container">
+        
+        <div class="info-card">
+            <h3>💰 Inversión Mensual</h3>
+            <span class="price">$800 MXN</span>
+            <p style="margin-bottom:15px; font-weight:600;">Tu mensualidad incluye:</p>
+            <ul style="list-style:none; padding:0;">
+                <li style="margin-bottom:10px; display:flex; align-items:center; gap:10px;"><i class="fas fa-check" style="color:var(--accent);"></i> 3 sesiones semanales estructuradas</li>
+                <li style="margin-bottom:10px; display:flex; align-items:center; gap:10px;"><i class="fas fa-check" style="color:var(--accent);"></i> Uso completo de material profesional</li>
+                <li style="margin-bottom:10px; display:flex; align-items:center; gap:10px;"><i class="fas fa-check" style="color:var(--accent);"></i> Supervisión DT Certificado FMF</li>
+                <li style="margin-bottom:10px; display:flex; align-items:center; gap:10px;"><i class="fas fa-check" style="color:var(--accent);"></i> Evaluación continua del jugador</li>
+                <li style="margin-bottom:10px; display:flex; align-items:center; gap:10px;"><i class="fas fa-check" style="color:var(--accent);"></i> Partidos interescuadras</li>
+            </ul>
+        </div>
+
+        <div class="info-card light">
+            <h3 style="color:var(--primary);">👕 Sobre el Uniforme</h3>
+            <p style="margin-bottom:20px; text-align:justify;">
+                Por el momento, los alumnos deben asistir con <strong>ropa deportiva cómoda y tenis adecuados</strong> (futbol rápido/turf).
+            </p>
+            <p style="margin-bottom:20px; text-align:justify;">
+                Próximamente contaremos con uniforme oficial institucional (Playera, Short y Calcetas) que será independiente de la mensualidad.
+            </p>
+            <div style="background: #eef2f5; padding: 15px; border-radius: 10px; text-align: center;">
+                <strong>¿Quieres inscribirte?</strong>
+                <br>
+                <button onclick="mostrarPagina('registro')" class="btn" style="margin-top:10px; padding:10px 20px; font-size:0.8rem;">Llenar Ficha</button>
             </div>
         </div>
     </div>
-</section>
+</div>
 
-<section id="metodologia" style="background-color: var(--light);">
-  <h2>Nuestra Metodología</h2>
-  <div class="grid">
-    <div class="card">
-      <i class="fas fa-futbol"></i>
-      <h3>Técnica Real</h3>
-      <p>Fundamentos aplicados a situaciones de partido (control, pase y perfiles), no ejercicios aislados.</p>
-    </div>
-    <div class="card">
-      <i class="fas fa-brain"></i>
-      <h3>Inteligencia Táctica</h3>
-      <p>Enseñamos a leer el juego, ocupar espacios y tomar la mejor decisión bajo presión.</p>
-    </div>
-    <div class="card">
-      <i class="fas fa-users"></i>
-      <h3>Valores PRODEF</h3>
-      <p>Disciplina, puntualidad y respeto. Formamos personas íntegras antes que futbolistas.</p>
-    </div>
-  </div>
-</section>
-
-<section id="info">
-  <h2>Inscripciones Abiertas</h2>
-  <div class="info-container">
-    <div class="info-card" style="background: white; color: var(--primary); border: 2px solid var(--primary);">
-        <h3 style="color: var(--primary);">🗓️ Horarios de Clase</h3>
-        <ul>
-            <li><i class="fas fa-calendar-check"></i> Lunes, Miércoles y Viernes</li>
-            <li><i class="far fa-clock"></i> 5:15 PM - 6:45 PM</li>
-            <li><i class="fas fa-child"></i> Categorías: 6 a 15 años</li>
-            <li><i class="fas fa-map-marker-alt"></i> Canchas Premier Villas 2</li>
-        </ul>
-    </div>
-
-    <div class="info-card">
-        <h3>💰 Inversión Mensual</h3>
-        <p>Calidad garantizada por profesor certificado.</p>
-        <span class="price">$800 MXN</span>
-        <ul>
-            <li>✅ Entrenamientos planificados</li>
-            <li>✅ Seguimiento personalizado</li>
-            <li>✅ Material de entrenamiento de calidad</li>
-        </ul>
-    </div>
-  </div>
-</section>
-
-<section id="registro" style="background-color: #eef2f5;">
-    <h2>Ficha de Jugador</h2>
-    <p style="text-align: center; margin-bottom: 30px;">
-        Llena este formulario para agilizar tu registro y preparar tu primera sesión.
-    </p>
+<div id="faq" class="page-section">
+    <h2 class="page-title">Preguntas Frecuentes</h2>
     
-    <div class="form-wrapper">
-        <iframe 
-            src="https://docs.google.com/forms/d/e/1FAIpQLSc1Pzbh1RakZLCwca9i3RvXngZmHQXRNfg_jB9ggxAJmwmlbg/viewform?embedded=true" 
-            width="100%" 
-            height="1450" 
-            frameborder="0" 
-            marginheight="0" 
-            marginwidth="0">
-            Cargando…
-        </iframe>
+    <div class="accordion">
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                ¿Aceptan niñas en la academia? <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="accordion-content">
+                <p><strong>Sí.</strong> PRODEF es un espacio formativo mixto abierto tanto para niños como para niñas. Nuestro enfoque es el desarrollo individual del jugador y la inteligencia de juego, independientemente del género.</p>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                ¿Necesitan tener experiencia previa? <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="accordion-content">
+                <p><strong>No es necesario.</strong> Trabajamos con jugadores desde nivel principiante hasta intermedio. El objetivo de nuestra metodología es desarrollar al jugador desde su punto de partida actual.</p>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                ¿Qué pasa si llueve? <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="accordion-content">
+                <p>La prioridad es la seguridad. Si la lluvia es ligera y la cancha es segura, el entrenamiento continúa. Si las condiciones son inseguras (tormenta eléctrica o piso muy resbaloso), la sesión se reprograma o ajusta.</p>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                ¿Cuáles son los horarios exactos? <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="accordion-content">
+                <p>Entrenamos Lunes, Miércoles y Viernes de <strong>5:15 PM a 6:45 PM</strong> en Canchas Premier Villas 2.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div style="text-align:center; margin-top:40px;">
+        <p>¿Tienes otra duda?</p>
+        <a href="https://wa.me/525532254771" class="btn" style="margin-top:10px;">
+            <i class="fab fa-whatsapp"></i> Preguntar por Chat
+        </a>
+    </div>
+</div>
+
+<div id="ubicacion" class="page-section">
+    <h2 class="page-title">Sede de Entrenamiento</h2>
+    <p style="text-align: center; margin-bottom: 20px; font-size: 1.2rem;">Canchas Premier Villas 2<br><small>Av Lago de Guadalupe 460, Ejido San Miguel Chalma.</small></p>
+    
+    <div style="max-width: 800px; margin: 0 auto;">
+        <div class="map-container">
+            <iframe 
+                width="100%" 
+                height="100%" 
+                frameborder="0" 
+                style="border:0" 
+                src="https://maps.google.com/maps?q=Cancha+Premier+Villas+2+Av+Lago+de+Guadalupe+460&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                allowfullscreen>
+            </iframe>
+        </div>
         
-        <p style="font-size: 0.75rem; color: #777; text-align: center; margin-top: 20px; padding: 0 10px;">
-          <i class="fas fa-lock"></i> <strong>Aviso de Privacidad:</strong> Tus datos personales y médicos serán utilizados exclusivamente para fines de registro deportivo y emergencias dentro de PRODEF. No compartimos información con terceros.
+        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 30px;">
+            <a href="https://www.google.com/maps/search/?api=1&query=Cancha+Premier+Villas+2" target="_blank" class="btn" style="background: var(--primary); border-color: var(--primary); color: white;">
+                <i class="fas fa-map-marker-alt"></i> Abrir en Google Maps
+            </a>
+        </div>
+    </div>
+</div>
+
+<div id="registro" class="page-section">
+    <h2 class="page-title">Ficha de Jugador</h2>
+    <div style="max-width: 800px; margin: 0 auto;">
+        <div style="background: white; padding: 10px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden;">
+            <iframe 
+                src="https://docs.google.com/forms/d/e/1FAIpQLSc1Pzbh1RakZLCwca9i3RvXngZmHQXRNfg_jB9ggxAJmwmlbg/viewform?embedded=true" 
+                width="100%" 
+                height="1450" 
+                frameborder="0" 
+                marginheight="0" 
+                marginwidth="0">
+                Cargando…
+            </iframe>
+        </div>
+        <p style="font-size: 0.75rem; color: #777; text-align: center; margin-top: 20px;">
+            <i class="fas fa-lock"></i> <strong>Aviso de Privacidad:</strong> Tus datos personales y médicos serán utilizados exclusivamente para fines de registro deportivo en PRODEF.
         </p>
     </div>
-</section>
+</div>
 
-<section id="ubicacion">
-  <h2>Ubicación</h2>
-  <p style="text-align: center; margin-bottom: 20px;">Av Lago de Guadalupe 460, Ejido San Miguel Chalma.</p>
-  
-  <div class="map-wrapper">
-      <div class="map-container">
-        <iframe 
-            width="100%" 
-            height="100%" 
-            frameborder="0" 
-            style="border:0" 
-            src="https://maps.google.com/maps?q=Cancha+Premier+Villas+2+Av+Lago+de+Guadalupe+460&t=&z=15&ie=UTF8&iwloc=&output=embed" 
-            allowfullscreen>
-        </iframe>
-      </div>
-      
-      <a href="https://www.google.com/maps/search/?api=1&query=Cancha+Premier+Villas+2" target="_blank" class="btn btn-map">
-        <i class="fas fa-map-marker-alt"></i> 📍 Visualizar Ubicación en Google Maps
-      </a>
-  </div>
-  
-  <div style="text-align: center; margin-top: 40px;">
-      <a href="https://wa.me/525532254771" class="btn">
-        <i class="fab fa-whatsapp"></i> Mandar WhatsApp
-      </a>
-  </div>
-</section>
+<script>
+    // NAVEGACIÓN
+    function mostrarPagina(paginaId) {
+        const secciones = document.querySelectorAll('.page-section');
+        secciones.forEach(seccion => seccion.style.display = 'none');
+        document.getElementById(paginaId).style.display = 'block';
+        window.scrollTo(0, 0);
 
-<footer>
-  <p>© 2026 PRODEF - Proyecto de Desarrollo Futbolístico</p>
-  <p style="font-size: 0.8rem; color: #aaa; margin-top: 10px;">Xavier García de los Santos - Licencia FMF No. 2025-DTLD-01829</p>
-</footer>
+        // Actualizar Menú
+        const botones = document.querySelectorAll('nav button');
+        botones.forEach(btn => btn.classList.remove('active'));
+        const btnActivo = document.getElementById('btn-' + paginaId);
+        if(btnActivo) btnActivo.classList.add('active');
+    }
+
+    // ACORDEÓN FAQ
+    function toggleAccordion(element) {
+        element.classList.toggle("active");
+        var content = element.nextElementSibling;
+        if (content.style.maxHeight) {
+            content.style.maxHeight = null;
+        } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+        }
+    }
+</script>
 
 </body>
 </html>
