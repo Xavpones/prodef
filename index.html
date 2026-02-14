@@ -6,15 +6,14 @@
   <title>PRODEF | Formación Profesional de Fútbol</title>
   
   <link rel="icon" href="logo.png" type="image/png">
-
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   
   <style>
     :root{
-      --primary: #002855;   /* Azul Marino Fuerte */
-      --accent: #D4AF37;    /* Dorado (Excelencia) */
-      --highlight: #C8102E; /* Rojo (Pasión) */
+      --primary: #002855;
+      --accent: #D4AF37;
+      --highlight: #C8102E;
       --dark: #0f172a;
       --light: #f4f6f8;
       --white: #ffffff;
@@ -27,94 +26,69 @@
       background:var(--light);
       color:var(--dark);
       line-height:1.6;
-      padding-top: 70px; /* Espacio para el menú fijo */
+      /* Ajuste clave: Espacio suficiente para la barra fija */
+      padding-top: 70px; 
     }
 
     /* --- BOTÓN FLOTANTE WHATSAPP --- */
     .float-wa {
-        position: fixed;
-        width: 60px;
-        height: 60px;
-        bottom: 25px;
-        right: 25px;
-        background-color: #25d366;
-        color: #FFF;
-        border-radius: 50px;
-        text-align: center;
-        font-size: 30px;
-        box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-        z-index: 9999;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        transition: 0.3s;
-        animation: pulse 2s infinite;
+        position: fixed; width: 60px; height: 60px; bottom: 25px; right: 25px;
+        background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center;
+        font-size: 30px; box-shadow: 2px 2px 10px rgba(0,0,0,0.3); z-index: 9999;
+        display: flex; align-items: center; justify-content: center; text-decoration: none;
+        transition: 0.3s; animation: pulse 2s infinite;
     }
+    .float-wa:hover { background-color: #128C7E; transform: scale(1.1); }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
 
-    .float-wa:hover {
-        background-color: #128C7E;
-        transform: scale(1.1);
-    }
-
-    @keyframes pulse {
-        0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-        70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-        100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-    }
-
-    /* --- NAVEGACIÓN --- */
+    /* --- NAVEGACIÓN (HEADER) --- */
     nav{
-      position:fixed;
-      width:100%;
-      top:0;
-      left: 0;
+      position:fixed; width:100%; top:0; left: 0;
       background: var(--primary);
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:10px 5%;
-      z-index:1000;
+      display:flex; justify-content:space-between; align-items:center;
+      padding:10px 5%; z-index:1000;
       box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
 
-    nav .logo img { height: 50px; width: auto; cursor: pointer; }
-    nav .links { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+    nav .logo img { height: 45px; width: auto; cursor: pointer; display: block; }
+    
+    /* Contenedor de enlaces */
+    nav .links { display: flex; gap: 8px; align-items: center; }
 
+    /* Botones del menú */
     nav button {
       background: transparent; border: none; color: var(--white);
       font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.8rem;
       text-transform: uppercase; cursor: pointer; padding: 8px 12px;
       transition: 0.3s; border-radius: 5px;
     }
-
     nav button:hover, nav button.active { color: var(--accent); background: rgba(255,255,255,0.1); }
     nav button.btn-registro { border: 1px solid var(--accent); color: var(--accent); }
     nav button.btn-registro:hover { background: var(--accent); color: var(--primary); }
 
-    /* --- VISTAS (PÁGINAS) --- */
+    /* Icono Hamburguesa (Oculto en PC) */
+    .menu-toggle { display: none; font-size: 1.5rem; color: white; cursor: pointer; }
+
+    /* --- VISTAS --- */
     .page-section { display: none; animation: fadeIn 0.4s ease; min-height: 85vh; padding: 40px 5%; }
     #inicio { display: block; padding: 0; margin-top: -70px; }
 
-    /* --- PORTADA (HERO) MEJORADA --- */
+    /* --- HERO --- */
     header{
       min-height:100vh;
       background:linear-gradient(rgba(0, 40, 85, 0.85), rgba(0, 40, 85, 0.70)),
       url('https://images.unsplash.com/photo-1517466787929-bc90951d6dbb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
       background-size:cover; background-position:center;
       display:flex; flex-direction:column; justify-content:center; align-items:center;
-      text-align:center; color:white; padding:80px 20px;
-      position: relative; /* Para posicionar el footer */
+      text-align:center; color:white; padding:80px 20px; position: relative;
     }
-
     header h1{ font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight:900; text-transform: uppercase; line-height: 1.1; margin-bottom: 15px; }
     header h1 span { color: var(--accent); }
 
-    /* BARRA INFERIOR HERO (NUEVO) */
+    /* HERO FOOTER */
     .hero-footer {
         position: absolute; bottom: 0; left: 0; width: 100%;
-        background: rgba(0, 20, 40, 0.9);
-        backdrop-filter: blur(5px);
+        background: rgba(0, 20, 40, 0.9); backdrop-filter: blur(5px);
         display: flex; justify-content: center; gap: 40px;
         padding: 25px 5%; border-top: 1px solid rgba(255,255,255,0.1);
     }
@@ -122,75 +96,82 @@
     .hero-feature i { font-size: 1.8rem; color: var(--accent); }
     .hero-feature strong { display: block; font-size: 0.75rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 1px; }
 
-    /* --- TITULOS --- */
+    /* --- ESTILOS GENERALES --- */
     h2.page-title { text-align: center; margin-bottom: 40px; font-size: 2.2rem; color: var(--primary); font-weight: 800; text-transform: uppercase; position: relative; }
     h2.page-title::after { content: ''; display: block; width: 80px; height: 4px; background: var(--highlight); margin: 10px auto; }
-    h3 { color: var(--primary); margin-bottom: 10px; }
-
-    /* --- TIMELINE (RUTINA) --- */
+    
+    /* Botones Genéricos */
+    .badge-btn { background-color: var(--highlight); color: white; padding: 8px 20px; border-radius: 30px; font-weight: bold; font-size: 0.8rem; margin-bottom: 20px; border: 2px solid var(--highlight); display: inline-flex; align-items: center; gap: 8px; cursor: pointer; transition: 0.3s; }
+    .btn { display:inline-block; padding:15px 35px; background:var(--accent); color: var(--primary); border-radius:50px; font-weight:800; text-transform: uppercase; font-size: 0.9rem; transition:0.3s; border: 2px solid var(--accent); cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    .btn-outline { background: transparent; border: 2px solid white; color: white; margin-left: 15px; }
+    
+    /* TIMELINE */
     .timeline { position: relative; max-width: 800px; margin: 0 auto 50px auto; border-left: 4px solid var(--accent); padding-left: 30px; }
     .timeline-item { position: relative; margin-bottom: 30px; }
     .timeline-item::before { content: ''; position: absolute; left: -39px; top: 5px; width: 14px; height: 14px; background: var(--highlight); border-radius: 50%; border: 3px solid white; }
     .time-badge { background: var(--primary); color: white; padding: 3px 10px; border-radius: 15px; font-size: 0.8rem; font-weight: bold; display: inline-block; margin-bottom: 5px; }
-    
-    /* --- MATERIAL LIST --- */
+
+    /* MATERIAL & FAQ */
     .material-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 30px; }
     .material-item { background: white; padding: 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; align-items: center; gap: 10px; font-size: 0.9rem; border-left: 3px solid var(--primary); }
     .material-item i { color: var(--accent); }
 
-    /* --- ACCORDION (FAQ) --- */
-    .accordion { max-width: 800px; margin: 0 auto; }
     .accordion-item { background: white; border-radius: 10px; margin-bottom: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); overflow: hidden; }
-    .accordion-header { background: white; padding: 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: bold; color: var(--primary); transition: 0.3s; }
-    .accordion-header:hover { background: #f9f9f9; }
+    .accordion-header { background: white; padding: 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: bold; color: var(--primary); }
     .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; padding: 0 20px; color: #555; text-align: justify; }
-    .accordion-content p { padding-bottom: 20px; }
-    .accordion-header.active { background: var(--light); color: var(--highlight); }
 
-    /* --- COMPONENTES Y BOTONES --- */
-    .badge-btn { background-color: var(--highlight); color: white; padding: 8px 20px; border-radius: 30px; font-weight: bold; font-size: 0.8rem; margin-bottom: 20px; border: 2px solid var(--highlight); display: inline-flex; align-items: center; gap: 8px; cursor: pointer; transition: 0.3s; }
-    .badge-btn:hover { background: transparent; transform: translateY(-2px); color: var(--highlight); }
-
-    .btn { display:inline-block; padding:15px 35px; background:var(--accent); color: var(--primary); border-radius:50px; font-weight:800; text-transform: uppercase; font-size: 0.9rem; transition:0.3s; border: 2px solid var(--accent); cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-    .btn:hover { background: transparent; color: var(--accent); }
-
-    .btn-outline { background: transparent; border: 2px solid white; color: white; margin-left: 15px; }
-    .btn-outline:hover { background: white; color: var(--primary); }
-
-    /* PERFIL ENTRENADOR */
+    /* PERFIL */
     .profile-container { display: flex; flex-direction: row; align-items: center; gap: 40px; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.05); border-left: 8px solid var(--accent); }
     .profile-img { flex: 1; min-width: 250px; height: 350px; background-color: #ddd; background-image: url('foto-xavier.jpg'); background-size: cover; background-position: center; border-radius: 15px; }
     .profile-info { flex: 2; }
-    
     .values-list { list-style: none; margin-top: 15px; }
     .values-list li { margin-bottom: 8px; padding-left: 20px; position: relative; font-size: 0.95rem; }
     .values-list li::before { content: '✓'; color: var(--highlight); position: absolute; left: 0; font-weight: bold; }
 
-    /* INFO CARDS */
+    /* INFO & MAPA */
     .info-container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
     .info-card { background: var(--primary); color: white; padding: 2.5rem; border-radius: 20px; flex: 1; min-width: 300px; max-width: 500px; }
     .info-card.light { background: white; color: var(--dark); border: 2px solid var(--primary); }
     .price { font-size: 2.5rem; color: var(--accent); font-weight: 800; display: block; margin: 15px 0; }
-    
-    /* MAPA */
     .map-container { width: 100%; height: 350px; border-radius: 20px; overflow: hidden; border: 2px solid white; }
 
-    /* --- RESPONSIVE (CELULAR) --- */
+    /* --- RESPONSIVE (OPTIMIZACIÓN CELULAR) --- */
     @media(max-width:768px){
-      nav { flex-direction: column; gap: 10px; padding: 15px; }
-      nav .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
-      nav button { font-size: 0.7rem; padding: 6px 10px; flex-grow: 1; text-align: center; }
+      /* Header Delgado */
+      body { padding-top: 65px; }
+      nav { padding: 10px 5%; justify-content: space-between; flex-wrap: wrap; }
+      
+      /* Botón Hamburguesa Visible */
+      .menu-toggle { display: block; }
+
+      /* Menú Oculto por defecto */
+      nav .links {
+        display: none; /* Oculto */
+        width: 100%;
+        flex-direction: column;
+        background: var(--primary);
+        padding-top: 15px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        margin-top: 10px;
+      }
+      
+      /* Clase para mostrar el menú */
+      nav .links.active { display: flex; animation: slideDown 0.3s ease; }
+
+      nav button { width: 100%; text-align: left; padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+      nav button:last-child { border-bottom: none; margin-top: 10px; text-align: center; }
+
+      /* Ajustes de contenido */
       .profile-container { flex-direction: column; padding: 25px; border-left: none; border-top: 8px solid var(--accent); }
       .profile-img { width: 100%; min-height: 300px; }
-      
-      body { padding-top: 140px; } 
-      #inicio { margin-top: -140px; }
+      #inicio { margin-top: -65px; }
 
       .hero-footer { flex-direction: column; position: relative; gap: 20px; padding: 30px; }
       .btn-outline { margin-left: 0; margin-top: 15px; display: block; width: 100%; }
       .btn { width: 100%; display: block; }
     }
 
+    @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
@@ -204,7 +185,12 @@
   <div class="logo" onclick="mostrarPagina('inicio')">
       <img src="logo.png" alt="PRODEF Logo">
   </div>
-  <div class="links">
+  
+  <div class="menu-toggle" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
+  </div>
+
+  <div class="links" id="nav-links">
     <button onclick="mostrarPagina('inicio')" id="btn-inicio" class="active">Inicio</button>
     <button onclick="mostrarPagina('entrenador')" id="btn-entrenador">Entrenador</button>
     <button onclick="mostrarPagina('metodologia')" id="btn-metodologia">Metodología</button>
@@ -287,11 +273,9 @@
 
             <h4 style="color:var(--highlight); margin-top:20px; text-transform:uppercase;">Valores Innegociables:</h4>
             <ul class="values-list">
-                <li>Se saluda al llegar y se despide al retirarse.</li>
                 <li>Se respeta al compañero, al entrenador y al rival.</li>
                 <li>El material de entrenamiento se cuida y se respeta.</li>
                 <li>El error es parte del aprendizaje, pero la actitud es obligatoria.</li>
-                <li>El compañero es sagrado. Nadie entrena solo.</li>
             </ul>
         </div>
     </div>
@@ -332,8 +316,6 @@
     </div>
 
     <h2 class="page-title" style="margin-top:60px;">Material Profesional</h2>
-    <p style="text-align:center;">Todo el material es de calidad formativa, adecuado para el desarrollo.</p>
-    
     <div class="material-list">
         <div class="material-item"><i class="fas fa-futbol"></i> Balones Oficiales No. 4 y 5</div>
         <div class="material-item"><i class="fas fa-traffic-light"></i> Conos y Platos</div>
@@ -381,7 +363,6 @@
 
 <div id="faq" class="page-section">
     <h2 class="page-title">Preguntas Frecuentes</h2>
-    
     <div class="accordion">
         <div class="accordion-item">
             <div class="accordion-header" onclick="toggleAccordion(this)">
@@ -419,13 +400,6 @@
             </div>
         </div>
     </div>
-    
-    <div style="text-align:center; margin-top:40px;">
-        <p>¿Tienes otra duda?</p>
-        <a href="https://wa.me/525532254771" class="btn" style="margin-top:10px;">
-            <i class="fab fa-whatsapp"></i> Preguntar por Chat
-        </a>
-    </div>
 </div>
 
 <div id="ubicacion" class="page-section">
@@ -439,11 +413,10 @@
                 height="100%" 
                 frameborder="0" 
                 style="border:0" 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3759.547690325608!2d-99.23164528574306!3d19.56085504933904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d21c43d9c7d0d1%3A0x6e9a6c7b3b6e8e8!2sAv%20Lago%20de%20Guadalupe%20460%2C%20San%20Miguel%20Chalma%2C%2052928%20Cd%20L%C3%B3pez%20Mateos%2C%20M%C3%A9x.!5e0!3m2!1ses-419!2smx!4v1644345678901!5m2!1ses-419!2smx" 
+                src="https://maps.google.com/maps?q=Cancha+Premier+Villas+2+Av+Lago+de+Guadalupe+460&t=&z=15&ie=UTF8&iwloc=&output=embed" 
                 allowfullscreen>
             </iframe>
         </div>
-        
         <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 30px;">
             <a href="https://maps.google.com/?q=Canchas+Premier+Villas+2" target="_blank" class="btn" style="background: var(--primary); border-color: var(--primary); color: white;">
                 <i class="fas fa-map-marker-alt"></i> Abrir en Google Maps
@@ -473,21 +446,30 @@
 </div>
 
 <script>
-    // CONTROL DE PESTAÑAS
+    // CONTROL DEL MENÚ HAMBURGUESA
+    function toggleMenu() {
+        const links = document.getElementById('nav-links');
+        links.classList.toggle('active');
+    }
+
+    // CONTROL DE PÁGINAS
     function mostrarPagina(paginaId) {
+        // Cerrar menú móvil si está abierto
+        document.getElementById('nav-links').classList.remove('active');
+
         const secciones = document.querySelectorAll('.page-section');
         secciones.forEach(seccion => seccion.style.display = 'none');
         document.getElementById(paginaId).style.display = 'block';
         window.scrollTo(0, 0);
 
-        // Actualizar Menú
+        // Actualizar botón activo
         const botones = document.querySelectorAll('nav button');
         botones.forEach(btn => btn.classList.remove('active'));
         const btnActivo = document.getElementById('btn-' + paginaId);
         if(btnActivo) btnActivo.classList.add('active');
     }
 
-    // CONTROL DEL ACORDEÓN (FAQ)
+    // CONTROL DEL ACORDEÓN
     function toggleAccordion(element) {
         element.classList.toggle("active");
         var content = element.nextElementSibling;
