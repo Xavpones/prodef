@@ -6,14 +6,15 @@
   <title>PRODEF | Formación Profesional de Fútbol</title>
   
   <link rel="icon" href="logo.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   
   <style>
     :root{
-      --primary: #002855;
-      --accent: #D4AF37;
-      --highlight: #C8102E;
+      --primary: #002855;   /* Azul Marino Fuerte */
+      --accent: #D4AF37;    /* Dorado (Excelencia) */
+      --highlight: #C8102E; /* Rojo (Pasión) */
       --dark: #0f172a;
       --light: #f4f6f8;
       --white: #ffffff;
@@ -78,7 +79,7 @@
     }
 
     nav .logo img { height: 50px; width: auto; cursor: pointer; }
-    nav .links { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+    nav .links { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
 
     nav button {
       background: transparent; border: none; color: var(--white);
@@ -91,11 +92,11 @@
     nav button.btn-registro { border: 1px solid var(--accent); color: var(--accent); }
     nav button.btn-registro:hover { background: var(--accent); color: var(--primary); }
 
-    /* --- VISTAS --- */
+    /* --- VISTAS (PÁGINAS) --- */
     .page-section { display: none; animation: fadeIn 0.4s ease; min-height: 85vh; padding: 40px 5%; }
     #inicio { display: block; padding: 0; margin-top: -70px; }
 
-    /* --- PORTADA --- */
+    /* --- PORTADA (HERO) MEJORADA --- */
     header{
       min-height:100vh;
       background:linear-gradient(rgba(0, 40, 85, 0.85), rgba(0, 40, 85, 0.70)),
@@ -103,17 +104,30 @@
       background-size:cover; background-position:center;
       display:flex; flex-direction:column; justify-content:center; align-items:center;
       text-align:center; color:white; padding:80px 20px;
+      position: relative; /* Para posicionar el footer */
     }
 
     header h1{ font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight:900; text-transform: uppercase; line-height: 1.1; margin-bottom: 15px; }
     header h1 span { color: var(--accent); }
+
+    /* BARRA INFERIOR HERO (NUEVO) */
+    .hero-footer {
+        position: absolute; bottom: 0; left: 0; width: 100%;
+        background: rgba(0, 20, 40, 0.9);
+        backdrop-filter: blur(5px);
+        display: flex; justify-content: center; gap: 40px;
+        padding: 25px 5%; border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .hero-feature { color: white; display: flex; align-items: center; gap: 15px; font-size: 0.9rem; text-align: left; }
+    .hero-feature i { font-size: 1.8rem; color: var(--accent); }
+    .hero-feature strong { display: block; font-size: 0.75rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 1px; }
 
     /* --- TITULOS --- */
     h2.page-title { text-align: center; margin-bottom: 40px; font-size: 2.2rem; color: var(--primary); font-weight: 800; text-transform: uppercase; position: relative; }
     h2.page-title::after { content: ''; display: block; width: 80px; height: 4px; background: var(--highlight); margin: 10px auto; }
     h3 { color: var(--primary); margin-bottom: 10px; }
 
-    /* --- TIMELINE (RUTINA DE ENTRENAMIENTO) --- */
+    /* --- TIMELINE (RUTINA) --- */
     .timeline { position: relative; max-width: 800px; margin: 0 auto 50px auto; border-left: 4px solid var(--accent); padding-left: 30px; }
     .timeline-item { position: relative; margin-bottom: 30px; }
     .timeline-item::before { content: ''; position: absolute; left: -39px; top: 5px; width: 14px; height: 14px; background: var(--highlight); border-radius: 50%; border: 3px solid white; }
@@ -133,13 +147,17 @@
     .accordion-content p { padding-bottom: 20px; }
     .accordion-header.active { background: var(--light); color: var(--highlight); }
 
-    /* --- COMPONENTES --- */
+    /* --- COMPONENTES Y BOTONES --- */
     .badge-btn { background-color: var(--highlight); color: white; padding: 8px 20px; border-radius: 30px; font-weight: bold; font-size: 0.8rem; margin-bottom: 20px; border: 2px solid var(--highlight); display: inline-flex; align-items: center; gap: 8px; cursor: pointer; transition: 0.3s; }
     .badge-btn:hover { background: transparent; transform: translateY(-2px); color: var(--highlight); }
 
     .btn { display:inline-block; padding:15px 35px; background:var(--accent); color: var(--primary); border-radius:50px; font-weight:800; text-transform: uppercase; font-size: 0.9rem; transition:0.3s; border: 2px solid var(--accent); cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
     .btn:hover { background: transparent; color: var(--accent); }
 
+    .btn-outline { background: transparent; border: 2px solid white; color: white; margin-left: 15px; }
+    .btn-outline:hover { background: white; color: var(--primary); }
+
+    /* PERFIL ENTRENADOR */
     .profile-container { display: flex; flex-direction: row; align-items: center; gap: 40px; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.05); border-left: 8px solid var(--accent); }
     .profile-img { flex: 1; min-width: 250px; height: 350px; background-color: #ddd; background-image: url('foto-xavier.jpg'); background-size: cover; background-position: center; border-radius: 15px; }
     .profile-info { flex: 2; }
@@ -148,21 +166,29 @@
     .values-list li { margin-bottom: 8px; padding-left: 20px; position: relative; font-size: 0.95rem; }
     .values-list li::before { content: '✓'; color: var(--highlight); position: absolute; left: 0; font-weight: bold; }
 
+    /* INFO CARDS */
     .info-container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
     .info-card { background: var(--primary); color: white; padding: 2.5rem; border-radius: 20px; flex: 1; min-width: 300px; max-width: 500px; }
     .info-card.light { background: white; color: var(--dark); border: 2px solid var(--primary); }
     .price { font-size: 2.5rem; color: var(--accent); font-weight: 800; display: block; margin: 15px 0; }
     
+    /* MAPA */
     .map-container { width: 100%; height: 350px; border-radius: 20px; overflow: hidden; border: 2px solid white; }
 
+    /* --- RESPONSIVE (CELULAR) --- */
     @media(max-width:768px){
       nav { flex-direction: column; gap: 10px; padding: 15px; }
       nav .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
-      nav button { font-size: 0.75rem; padding: 5px 10px; flex-grow: 1; text-align: center; }
+      nav button { font-size: 0.7rem; padding: 6px 10px; flex-grow: 1; text-align: center; }
       .profile-container { flex-direction: column; padding: 25px; border-left: none; border-top: 8px solid var(--accent); }
       .profile-img { width: 100%; min-height: 300px; }
-      body { padding-top: 130px; } 
-      #inicio { margin-top: -130px; }
+      
+      body { padding-top: 140px; } 
+      #inicio { margin-top: -140px; }
+
+      .hero-footer { flex-direction: column; position: relative; gap: 20px; padding: 30px; }
+      .btn-outline { margin-left: 0; margin-top: 15px; display: block; width: 100%; }
+      .btn { width: 100%; display: block; }
     }
 
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -183,26 +209,57 @@
     <button onclick="mostrarPagina('entrenador')" id="btn-entrenador">Entrenador</button>
     <button onclick="mostrarPagina('metodologia')" id="btn-metodologia">Metodología</button>
     <button onclick="mostrarPagina('costos')" id="btn-costos">Inscripción</button>
-    <button onclick="mostrarPagina('faq')" id="btn-faq">Preguntas</button> <button onclick="mostrarPagina('ubicacion')" id="btn-ubicacion">Ubicación</button>
+    <button onclick="mostrarPagina('faq')" id="btn-faq">Preguntas</button>
+    <button onclick="mostrarPagina('ubicacion')" id="btn-ubicacion">Ubicación</button>
     <button onclick="mostrarPagina('registro')" id="btn-registro" class="btn-registro">Registro</button>
   </div>
 </nav>
 
 <div id="inicio" class="page-section">
     <header>
-      <div class="badge-btn" onclick="mostrarPagina('entrenador')">
-        <i class="fas fa-user-tie"></i> CONOCE AL DIRECTOR DEPORTIVO
+      <div style="z-index: 2;">
+          <div class="badge-btn" onclick="mostrarPagina('entrenador')">
+            <i class="fas fa-user-tie"></i> CONOCE AL DIRECTOR DEPORTIVO
+          </div>
+          
+          <h1>PRODEF<br><span>FÚTBOL FORMATIVO</span></h1>
+          
+          <p style="max-width: 700px; margin: 0 auto 30px auto; font-size: 1.2rem; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">
+            No buscamos jugadores que solo jueguen,<br> buscamos jugadores que <strong>entiendan el juego</strong>.
+          </p>
+          
+          <div style="margin-top: 30px;">
+              <button onclick="mostrarPagina('registro')" class="btn">
+                <i class="fas fa-clipboard-list"></i> Pre-Inscribirse Ahora
+              </button>
+              <button onclick="mostrarPagina('ubicacion')" class="btn btn-outline">
+                <i class="fas fa-map-marker-alt"></i> Ver Sede
+              </button>
+          </div>
       </div>
-      
-      <h1>PRODEF<br><span>FÚTBOL FORMATIVO</span></h1>
-      <p style="max-width: 700px; margin: 0 auto 30px auto; font-size: 1.2rem;">
-        No buscamos jugadores que solo jueguen, buscamos jugadores que entiendan el juego.
-      </p>
-      
-      <div style="margin-top: 30px;">
-          <button onclick="mostrarPagina('registro')" class="btn">
-            <i class="fas fa-clipboard-list"></i> Pre-Inscribirse Ahora
-          </button>
+
+      <div class="hero-footer">
+          <div class="hero-feature">
+              <i class="fas fa-certificate"></i>
+              <div>
+                  <strong>CERTIFICACIÓN</strong>
+                  Licencias FMF y Barça Academy
+              </div>
+          </div>
+          <div class="hero-feature">
+              <i class="fas fa-shield-alt"></i>
+              <div>
+                  <strong>SEGURIDAD</strong>
+                  Ambiente Formativo Seguro
+              </div>
+          </div>
+          <div class="hero-feature">
+              <i class="fas fa-brain"></i>
+              <div>
+                  <strong>METODOLOGÍA</strong>
+                  Inteligencia Táctica Aplicada
+              </div>
+          </div>
       </div>
     </header>
 </div>
@@ -225,7 +282,7 @@
             </p>
 
             <p style="text-align: justify; color: #555;">
-                En PRODEF se forma al jugador y a la persona. La disciplina es parte del proceso formativo, no algo separado.
+                En PRODEF se forma al jugador y a la persona. La disciplina es parte del proceso formativo, no algo separado. Con experiencia en 4ta División Profesional y formación en Ingeniería, Xavier aplica un método estructurado donde el fútbol se analiza y se enseña con claridad.
             </p>
 
             <h4 style="color:var(--highlight); margin-top:20px; text-transform:uppercase;">Valores Innegociables:</h4>
@@ -382,13 +439,13 @@
                 height="100%" 
                 frameborder="0" 
                 style="border:0" 
-                src="https://maps.google.com/maps?q=Cancha+Premier+Villas+2+Av+Lago+de+Guadalupe+460&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3759.547690325608!2d-99.23164528574306!3d19.56085504933904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d21c43d9c7d0d1%3A0x6e9a6c7b3b6e8e8!2sAv%20Lago%20de%20Guadalupe%20460%2C%20San%20Miguel%20Chalma%2C%2052928%20Cd%20L%C3%B3pez%20Mateos%2C%20M%C3%A9x.!5e0!3m2!1ses-419!2smx!4v1644345678901!5m2!1ses-419!2smx" 
                 allowfullscreen>
             </iframe>
         </div>
         
         <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 30px;">
-            <a href="https://www.google.com/maps/search/?api=1&query=Cancha+Premier+Villas+2" target="_blank" class="btn" style="background: var(--primary); border-color: var(--primary); color: white;">
+            <a href="https://maps.google.com/?q=Canchas+Premier+Villas+2" target="_blank" class="btn" style="background: var(--primary); border-color: var(--primary); color: white;">
                 <i class="fas fa-map-marker-alt"></i> Abrir en Google Maps
             </a>
         </div>
@@ -416,7 +473,7 @@
 </div>
 
 <script>
-    // NAVEGACIÓN
+    // CONTROL DE PESTAÑAS
     function mostrarPagina(paginaId) {
         const secciones = document.querySelectorAll('.page-section');
         secciones.forEach(seccion => seccion.style.display = 'none');
@@ -430,7 +487,7 @@
         if(btnActivo) btnActivo.classList.add('active');
     }
 
-    // ACORDEÓN FAQ
+    // CONTROL DEL ACORDEÓN (FAQ)
     function toggleAccordion(element) {
         element.classList.toggle("active");
         var content = element.nextElementSibling;
